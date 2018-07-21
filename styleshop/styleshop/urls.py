@@ -18,23 +18,14 @@ from django.urls import path
 import mainapp.views as mainapp
 
 urlpatterns = [
-    # path(r'^$', mainapp.index),
-    # path(r'^index/', mainapp.index),
-    # path(r'^blog/', mainapp.blog),
-    # path(r'^checkout/', mainapp.checkout),
-    # path(r'^contact/', mainapp.contact),
-    # path(r'^regular_page/', mainapp.regular_page),
-    # path(r'^shop/', mainapp.shop),
-    # path(r'^single_blog/', mainapp.single_blog),
-    # path(r'^single_product_details/', mainapp.single_product_details),
     path('', mainapp.index),
     path('index/', mainapp.index),
     path('blog/', mainapp.blog),
     path('checkout/', mainapp.checkout),
     path('contact/', mainapp.contact),
-    path('regular_page/', mainapp.regular_page),
+    path('regular-page/', mainapp.regular_page),
     path('shop/', mainapp.shop),
-    path('single_blog/', mainapp.single_blog),
-    path('single_product_details/', mainapp.single_product_details),
+    path('single-blog/', mainapp.single_blog),
+    path('single-product-details/', mainapp.single_product_details),
     path('admin/', admin.site.urls),
 ]
