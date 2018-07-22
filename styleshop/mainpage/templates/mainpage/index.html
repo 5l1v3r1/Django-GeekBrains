@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,11 +14,11 @@
     <title>StyleShop</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="/static/img/core-img/favicon.ico">
+    <link rel="icon" href="{% static 'mainpage/img/core-img/favicon.ico' %}">
 
     <!-- Core Style CSS -->
-    <link rel="stylesheet" href="/static/style.css">
-    <link rel="stylesheet" href="/static/css/core-style.css">
+    <link rel="stylesheet" href="{% static 'mainpage/style.css' %}">
+    <link rel="stylesheet" href="{% static 'mainpage/css/core-style.css' %}">
 
 </head>
 
@@ -68,7 +70,7 @@
                                         <li><a href="/shop">Брюки</a></li>
                                     </ul>
                                     <div class="single-mega cn-col-4">
-                                        <img src="/static/img/bg-img/bg-6.jpg" alt="">
+                                        <img src="{% static 'mainpage/img/bg-img/bg-6.jpg' %}" alt="">
                                     </div>
                                 </div>
                             </li>
@@ -99,15 +101,15 @@
                 </div>
                 <!-- Favourite Area -->
                 <div class="favourite-area">
-                    <a href="/"><img src="/static/img/core-img/heart.svg" alt=""></a>
+                    <a href="/"><img src="{% static 'mainpage/img/core-img/heart.svg' %}" alt=""></a>
                 </div>
                 <!-- User Login Info -->
                 <div class="user-login-info">
-                    <a href="/"><img src="/static/img/core-img/user.svg" alt=""></a>
+                    <a href="/"><img src="{% static 'mainpage/img/core-img/user.svg' %}" alt=""></a>
                 </div>
                 <!-- Cart Area -->
                 <div class="cart-area">
-                    <a href="/" id="essenceCartBtn"><img src="/static/img/core-img/bag.svg" alt=""> <span>3</span></a>
+                    <a href="/" id="essenceCartBtn"><img src="{% static 'mainpage/img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
                 </div>
             </div>
 
@@ -122,7 +124,7 @@
 
         <!-- Cart Button -->
         <div class="cart-button">
-            <a href="/" id="rightSideCart"><img src="/static/img/core-img/bag.svg" alt=""> <span>3</span></a>
+            <a href="/" id="rightSideCart"><img src="{% static 'mainpage/img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
         </div>
 
         <div class="cart-content d-flex">
@@ -132,7 +134,7 @@
                 <!-- Single Cart Item -->
                 <div class="single-cart-item">
                     <a href="/" class="product-image">
-                        <img src="/static/img/product-img/product-1.jpg" class="cart-thumb" alt="">
+                        <img src="{% static 'mainpage/img/product-img/product-1.jpg' %}" class="cart-thumb" alt="">
                         <!-- Cart Item Desc -->
                         <div class="cart-item-desc">
                           <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
@@ -148,7 +150,7 @@
                 <!-- Single Cart Item -->
                 <div class="single-cart-item">
                     <a href="/" class="product-image">
-                        <img src="/static/img/product-img/product-2.jpg" class="cart-thumb" alt="">
+                        <img src="{% static 'mainpage/img/product-img/product-2.jpg' %}" class="cart-thumb" alt="">
                         <!-- Cart Item Desc -->
                         <div class="cart-item-desc">
                           <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
@@ -164,7 +166,7 @@
                 <!-- Single Cart Item -->
                 <div class="single-cart-item">
                     <a href="/" class="product-image">
-                        <img src="/static/img/product-img/product-3.jpg" class="cart-thumb" alt="">
+                        <img src="{% static 'mainpage/img/product-img/product-3.jpg' %}" class="cart-thumb" alt="">
                         <!-- Cart Item Desc -->
                         <div class="cart-item-desc">
                           <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
@@ -197,7 +199,7 @@
     <!-- ##### Right Side Cart End ##### -->
 
     <!-- ##### Welcome Area Start ##### -->
-    <section class="welcome_area bg-img background-overlay" style="background-image: url(static/img/bg-img/bg-1.jpg);">
+    <section class="welcome_area bg-img background-overlay" style="background-image: url( {% static 'mainpage/img/bg-img/bg-1.jpg' %} );">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
@@ -218,7 +220,7 @@
             <div class="row justify-content-center">
                 <!-- Single Catagory -->
                 <div class="col-12 col-sm-6 col-md-4">
-                    <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(static/img/bg-img/bg-2.jpg);">
+                    <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url( {% static 'mainpage/img/bg-img/bg-2.jpg' %} );">
                         <div class="catagory-content">
                             <a href="/">Clothing</a>
                         </div>
@@ -226,7 +228,7 @@
                 </div>
                 <!-- Single Catagory -->
                 <div class="col-12 col-sm-6 col-md-4">
-                    <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(static/img/bg-img/bg-3.jpg);">
+                    <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url( {% static 'mainpage/img/bg-img/bg-3.jpg' %} );">
                         <div class="catagory-content">
                             <a href="/">Shoes</a>
                         </div>
@@ -234,7 +236,7 @@
                 </div>
                 <!-- Single Catagory -->
                 <div class="col-12 col-sm-6 col-md-4">
-                    <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(static/img/bg-img/bg-4.jpg);">
+                    <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url( {% static 'mainpage/img/bg-img/bg-4.jpg' %} );">
                         <div class="catagory-content">
                             <a href="/">Accessories</a>
                         </div>
@@ -250,7 +252,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="cta-content bg-img background-overlay" style="background-image: url(static/img/bg-img/bg-5.jpg);">
+                    <div class="cta-content bg-img background-overlay" style="background-image: url( {% static 'mainpage/img/bg-img/bg-5.jpg' %} );">
                         <div class="h-100 d-flex align-items-center justify-content-end">
                             <div class="cta--text">
                                 <h6>До -60%</h6>
@@ -286,9 +288,9 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="/static/img/product-img/product-1.jpg" alt="">
+                                <img src="{% static 'mainpage/img/product-img/product-1.jpg' %}" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="/static/img/product-img/product-2.jpg" alt="">
+                                <img class="hover-img" src="{% static 'mainpage/img/product-img/product-2.jpg' %}" alt="">
                                 <!-- Favourite -->
                                 <div class="product-favourite">
                                     <a href="/" class="favme fa fa-heart"></a>
@@ -316,9 +318,9 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="/static/img/product-img/product-2.jpg" alt="">
+                                <img src="{% static 'mainpage/img/product-img/product-2.jpg' %}" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="/static/img/product-img/product-3.jpg" alt="">
+                                <img class="hover-img" src="{% static 'mainpage/img/product-img/product-3.jpg' %}" alt="">
                                 <!-- Favourite -->
                                 <div class="product-favourite">
                                     <a href="/" class="favme fa fa-heart"></a>
@@ -346,9 +348,9 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="/static/img/product-img/product-3.jpg" alt="">
+                                <img src="{% static 'mainpage/img/product-img/product-3.jpg' %}" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="/static/img/product-img/product-4.jpg" alt="">
+                                <img class="hover-img" src="{% static 'mainpage/img/product-img/product-4.jpg' %}" alt="">
 
                                 <!-- Product Badge -->
                                 <div class="product-badge offer-badge">
@@ -382,9 +384,9 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="/static/img/product-img/product-4.jpg" alt="">
+                                <img src="{% static 'mainpage/img/product-img/product-4.jpg' %}" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="/static/img/product-img/product-5.jpg" alt="">
+                                <img class="hover-img" src="{% static 'mainpage/img/product-img/product-5.jpg' %}" alt="">
 
                                 <!-- Product Badge -->
                                 <div class="product-badge new-badge">
@@ -424,27 +426,27 @@
     <div class="brands-area d-flex align-items-center justify-content-between">
         <!-- Brand Logo -->
         <div class="single-brands-logo">
-            <img src="/static/img/core-img/brand1.png" alt="">
+            <img src="{% static 'mainpage/img/core-img/brand1.png' %}" alt="">
         </div>
         <!-- Brand Logo -->
         <div class="single-brands-logo">
-            <img src="/static/img/core-img/brand2.png" alt="">
+            <img src="{% static 'mainpage/img/core-img/brand2.png' %}" alt="">
         </div>
         <!-- Brand Logo -->
         <div class="single-brands-logo">
-            <img src="/static/img/core-img/brand3.png" alt="">
+            <img src="{% static 'mainpage/img/core-img/brand3.png' %}" alt="">
         </div>
         <!-- Brand Logo -->
         <div class="single-brands-logo">
-            <img src="/static/img/core-img/brand4.png" alt="">
+            <img src="{% static 'mainpage/img/core-img/brand4.png' %}" alt="">
         </div>
         <!-- Brand Logo -->
         <div class="single-brands-logo">
-            <img src="/static/img/core-img/brand5.png" alt="">
+            <img src="{% static 'mainpage/img/core-img/brand5.png' %}" alt="">
         </div>
         <!-- Brand Logo -->
         <div class="single-brands-logo">
-            <img src="/static/img/core-img/brand6.png" alt="">
+            <img src="{% static 'mainpage/img/core-img/brand6.png' %}" alt="">
         </div>
     </div>
     <!-- ##### Brands Area End ##### -->
@@ -528,17 +530,17 @@
     <!-- ##### Footer Area End ##### -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="/static/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="{% static 'mainpage/js/jquery/jquery-2.2.4.min.js' %}"></script>
     <!-- Popper js -->
-    <script src="/static/js/popper.min.js"></script>
+    <script src="{% static 'mainpage/js/popper.min.js' %}"></script>
     <!-- Bootstrap js -->
-    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="{% static 'mainpage/js/bootstrap.min.js' %}"></script>
     <!-- Plugins js -->
-    <script src="/static/js/plugins.js"></script>
+    <script src="{% static 'mainpage/js/plugins.js' %}"></script>
     <!-- Classy Nav js -->
-    <script src="/static/js/classy-nav.min.js"></script>
+    <script src="{% static 'mainpage/js/classy-nav.min.js' %}"></script>
     <!-- Active js -->
-    <script src="/static/js/active.js"></script>
+    <script src="{% static 'mainpage/js/active.js' %}"></script>
 
 </body>
 
