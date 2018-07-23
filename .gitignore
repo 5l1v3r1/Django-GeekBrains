@@ -31,7 +31,6 @@ styleshop/test.py
 styleshop/mainapp/__pycache__/admin.cpython-36.pyc
 styleshop/mainapp/__pycache__/models.cpython-36.pyc
 styleshop/mainapp/__pycache__/__init__.cpython-36.pyc
-styleshop/mainapp/__pycache__/admin.cpython-36.pyc
 styleshop/mainapp/__pycache__/views.cpython-36.pyc
 styleshop/mainapp/migrations/__pycache__/__init__.cpython-36.pyc
 styleshop/sex/__pycache__/__init__.cpython-36.pyc
@@ -43,3 +42,9 @@ styleshop/styleshop/__pycache__/__init__.cpython-36.pyc
 styleshop/styleshop/__pycache__/settings.cpython-36.pyc
 styleshop/styleshop/__pycache__/urls.cpython-36.pyc
 styleshop/styleshop/__pycache__/wsgi.cpython-36.pyc
+styleshop/mainpage/__pycache__/urls.cpython-36.pyc
+styleshop/mainapp/__pycache__/urls.cpython-36.pyc
+styleshop/mainpage/__pycache__/__init__.cpython-36.pyc
+styleshop/mainpage/__pycache__/admin.cpython-36.pyc
+styleshop/mainpage/__pycache__/models.cpython-36.pyc
+styleshop/mainpage/__pycache__/views.cpython-36.pyc
