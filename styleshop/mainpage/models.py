@@ -32,4 +32,4 @@ class Category(models.Model):
     section = models.ForeignKey('mainpage.Section', on_delete=models.CASCADE)
 
     def __str__(self):
-        return ' - '.join([self.name, str(self.section)])
+        return self.name
