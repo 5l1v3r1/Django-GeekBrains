@@ -11,7 +11,7 @@
     <title>
         {% block title %}
         StyleShop
-        {% endblock %}
+        {% endblock title %}
     </title>
 
     <link rel="icon" href="{% static 'mainpage/img/core-img/favicon.ico' %}">
@@ -43,7 +43,7 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li><a href="/">Магазин</a>
+                            <li><a href="/shop">Магазин</a>
                                 <div class="megamenu">
                                     <ul class="single-mega cn-col-4">
                                         <li class="title">Женская одежда</li>
@@ -76,7 +76,7 @@
                             </li>
                             <li><a href="/">Страницы</a>
                                 <ul class="dropdown">
-                                    <li><a href="/index">Index</a></li>
+                                    <li><a href="/">Index</a></li>
                                     <li><a href="/shop">Shop</a></li>
                                     <li><a href="/single-product-details">Product Details</a></li>
                                     <li><a href="/checkout">Checkout</a></li>
@@ -198,11 +198,11 @@
     </div>
     <!-- Right Side Cart End -->
 
-    {% endblock %}
+    {% endblock header %}
 
     {% block content %}
 
-    {% endblock %}
+    {% endblock content %}
 
     {% block footer %}
     <!-- ##### Footer Area Start ##### -->
@@ -280,11 +280,11 @@
         </div>
     </footer>
     <!-- ##### Footer Area End ##### -->
-    {% endblock %}
+    {% endblock footer %}
 
     {% block js %}
 
-    {% endblock %}
+    {% endblock js %}
 
 </body>
 </html>

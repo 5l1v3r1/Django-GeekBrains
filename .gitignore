@@ -1,2 +1,5 @@
 *.cpython-36.pyc
 *desktop.ini
+styleshop/shoppage/migrations/*
+styleshop/mainpage/migrations/*
+styleshop/mainapp/migrations/*
