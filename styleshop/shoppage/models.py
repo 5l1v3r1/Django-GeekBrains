@@ -6,7 +6,7 @@ class Product(models.Model):
     section = models.ForeignKey('mainpage.Section', on_delete=models.CASCADE)
     category = models.ForeignKey('mainpage.Category', on_delete=models.CASCADE)
     sex = models.ForeignKey('mainpage.Sex', on_delete=models.CASCADE)
-    images = models.ImageField(upload_to='product/{}'.format(name))
+    images = models.ImageField(upload_to='products')
 
     def __str__(self):
         return ' - '.join([self.name, str(self.category)])
