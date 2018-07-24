@@ -59,7 +59,9 @@ ROOT_URLCONF = 'styleshop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'styleshop/templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
