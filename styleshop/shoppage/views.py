@@ -9,4 +9,4 @@ def shop(request):
 
 def single_product_details(request):
 
-    pass
+    return render(request, 'shoppage/single-product-details.html')
