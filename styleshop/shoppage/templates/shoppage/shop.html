@@ -5,13 +5,13 @@
 
 {% block content %}
 
-<!-- Название секции (подлежит изменению) -->
+<!-- Название товаров -->
 <div class="breadcumb_area bg-img" style="background-image: url( {% static 'shoppage/img/bg-img/breadcumb.jpg' %} );">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="page-title text-center">
-                    <h2>Все секции</h2>
+                    <h2>{{ page_title }}</h2>
                 </div>
             </div>
         </div>
@@ -36,12 +36,12 @@
                                 {% for section in sections %}
                                 
                                 <li data-toggle="collapse" data-target="#clothing">
-                                    <a href="/shop">{{ section.name }}</a>
+                                    <a href="/shop/section/{{ section.id }}">{{ section.name }}</a>
                                     <ul class="sub-menu collapse show" id="clothing">
                                         
                                         {% for category in categories %}
                                         <li>
-                                            <a href="/shop">
+                                            <a href="/shop/category/{{ category.id }}">
                                             
                                                 {% if  category.section == section %}
                                                     {{ category.name }}
@@ -83,16 +83,16 @@
                         <p class="widget-title2 mb-30">Color</p>
                         <div class="widget-desc">
                             <ul class="d-flex">
-                                <li><a href="/#" class="color1"></a></li>
-                                <li><a href="/#" class="color2"></a></li>
-                                <li><a href="/#" class="color3"></a></li>
-                                <li><a href="/#" class="color4"></a></li>
-                                <li><a href="/#" class="color5"></a></li>
-                                <li><a href="/#" class="color6"></a></li>
-                                <li><a href="/#" class="color7"></a></li>
-                                <li><a href="/#" class="color8"></a></li>
-                                <li><a href="/#" class="color9"></a></li>
-                                <li><a href="/#" class="color10"></a></li>
+                                <li><a href="/shop" class="color1"></a></li>
+                                <li><a href="/shop" class="color2"></a></li>
+                                <li><a href="/shop" class="color3"></a></li>
+                                <li><a href="/shop" class="color4"></a></li>
+                                <li><a href="/shop" class="color5"></a></li>
+                                <li><a href="/shop" class="color6"></a></li>
+                                <li><a href="/shop" class="color7"></a></li>
+                                <li><a href="/shop" class="color8"></a></li>
+                                <li><a href="/shop" class="color9"></a></li>
+                                <li><a href="/shop" class="color10"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                         <div class="widget-desc">
                             <ul>
                                 {% for brand in brands %}
-                                <li><a href="/shop">{{ brand.name }}</a></li>
+                                <li><a href="/shop/brand/{{ brand.id }}">{{ brand.name }}</a></li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -118,7 +118,7 @@
                             <div class="product-topbar d-flex align-items-center justify-content-between">
                                 <!-- Количестов найденных товаров -->
                                 <div class="total-products">
-                                    <p><span>186</span> products found</p>
+                                    <p>Товаров найдено: <span> {{ count }} </span></p>
                                 </div>
                                 <!-- Сортировка -->
                                 <div class="product-sorting d-flex">
@@ -189,13 +189,13 @@
                 <!-- Перелистывание страниц вывода товаров -->
                 <nav aria-label="navigation">
                     <ul class="pagination mt-50 mb-70">
-                        <li class="page-item"><a class="page-link" href="/#"><i class="fa fa-angle-left"></i></a></li>
-                        <li class="page-item"><a class="page-link" href="/#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="/#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="/#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="/#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="/#">21</a></li>
-                        <li class="page-item"><a class="page-link" href="/#"><i class="fa fa-angle-right"></i></a></li>
+                        <li class="page-item"><a class="page-link" href="/shop"><i class="fa fa-angle-left"></i></a></li>
+                        <li class="page-item"><a class="page-link" href="/shop">1</a></li>
+                        <li class="page-item"><a class="page-link" href="/shop">2</a></li>
+                        <li class="page-item"><a class="page-link" href="/shop">3</a></li>
+                        <li class="page-item"><a class="page-link" href="/shop">...</a></li>
+                        <li class="page-item"><a class="page-link" href="/shop">21</a></li>
+                        <li class="page-item"><a class="page-link" href="/shop"><i class="fa fa-angle-right"></i></a></li>
                     </ul>
                 </nav>
             </div>
