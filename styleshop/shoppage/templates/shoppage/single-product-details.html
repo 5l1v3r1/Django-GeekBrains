@@ -23,7 +23,7 @@
         <p class="product-price">
             {% if product.sale > 0 %}
             <span class="old-price">{{ product.cost }} Руб</span> 
-            {{ product.sale }}
+            -{{ product.sale }}%
             {% else %}
             {{ product.cost }} Руб
             {% endif %}
