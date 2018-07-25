@@ -5,5 +5,13 @@ def index(request):
 
     sections = models.Section.objects.all()
     brands = models.Brand.objects.all()
+    categories = models.Category.objects.all()
     
-    return render(request, 'mainpage/index.html', {'sections': sections, 'brands': brands})
+    return render(
+        request, 'mainpage/index.html', 
+        {
+            'sections': sections, 
+            'brands': brands,
+            'categories': categories,
+        }
+    )

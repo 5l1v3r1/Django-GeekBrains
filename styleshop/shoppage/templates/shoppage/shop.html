@@ -3,6 +3,34 @@
 
 {% block title %} Shop {% endblock title %}
 
+{% block top_menu %}
+
+    {% for section in sections %}
+        <ul class="single-mega cn-col-4">
+
+            <li class="title">{{ section.name }}</li>
+
+            {% for category in categories %}
+
+                {% if category.section.id == section.id %}
+                    <li><a href="/shop/category/{{ category.id }}">{{ category.name }}</a></li>
+                {% endif %}
+
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
+    <ul class="single-mega cn-col-4">
+        <li class="title">Брэнды</li>
+            
+        {% for brand in brands %}
+            <li><a href="/shop/brand/{{ brand.id }}">{{ brand.name }}</a></li>
+        {% endfor %}
+
+    </ul>
+
+{% endblock top_menu %}
+
 {% block content %}
 
 <!-- Название товаров -->

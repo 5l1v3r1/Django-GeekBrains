@@ -45,43 +45,12 @@
                         <ul>
                             <li><a href="/shop">Магазин</a>
                                 <div class="megamenu">
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Женская одежда</li>
-                                        <li><a href="/shop">Платья</a></li>
-                                        <li><a href="/shop">Блузки и рубашки</a></li>
-                                        <li><a href="/shop">Футболки</a></li>
-                                        <li><a href="/shop">Комбинезоны</a></li>
-                                        <li><a href="/shop">Брюки</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Мужская одежда</li>
-                                        <li><a href="/shop">Футболки</a></li>
-                                        <li><a href="/shop">Поло</a></li>
-                                        <li><a href="/shop">Рубашки</a></li>
-                                        <li><a href="/shop">Пиджаки</a></li>
-                                        <li><a href="/shop">Брюки</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Детская одежда</li>
-                                        <li><a href="/shop">Повседневная одежда</a></li>
-                                        <li><a href="/shop">Рубашки</a></li>
-                                        <li><a href="/shop">Футболки</a></li>
-                                        <li><a href="/shop">Жакеты</a></li>
-                                        <li><a href="/shop">Брюки</a></li>
-                                    </ul>
-                                    <div class="single-mega cn-col-4">
-                                        <img src="{% static 'mainpage/img/bg-img/bg-6.jpg' %}" alt="">
-                                    </div>
+                                    
+                                    {% block top_menu %}
+                                    
+                                    {% endblock top_menu %}
+                                    
                                 </div>
-                            </li>
-                            <li><a href="/">Страницы</a>
-                                <ul class="dropdown">
-                                    <li><a href="/">Index</a></li>
-                                    <li><a href="/shop">Shop</a></li>
-                                    <li><a href="/single-product-details">Product Details</a></li>
-                                    <li><a href="/checkout">Checkout</a></li>
-                                    <li><a href="/contact">Contact</a></li>
-                                </ul>
                             </li>
                             <li><a href="/contact">Контакты</a></li>
                         </ul>
