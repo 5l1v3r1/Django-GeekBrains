@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from . import models
 from mainpage.models import Section, Category, Brand
 
@@ -19,6 +19,11 @@ def shop(request):
         }
     )
 
-def single_product_details(request):
+def single_product_details(request, primary_key):
 
-    return render(request, 'shoppage/single-product-details.html')
+    product = get_object_or_404(models.Product, id=primary_key)
+
+    return render(
+        request, 'shoppage/single-product-details.html', 
+        {'product': product}
+    )
