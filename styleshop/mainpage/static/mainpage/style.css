@@ -1,0 +1,9 @@
+.footer_shop_logo a {
+    font-size: 18px;
+    color: white;
+}
+
+.footer_shop_logo a:hover {
+    font-size: 18px;
+    color: #1abc9c;
+}
