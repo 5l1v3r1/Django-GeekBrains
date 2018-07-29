@@ -174,7 +174,9 @@
                             <div class="single-product-wrapper">
                                 <!-- Фотография товара -->
                                 <div class="product-img">
-                                    <img src="/media/{{ product.images }}" alt="">
+                                    <a href="/{{product.id}}">
+                                        <img src="/media/{{ product.images }}" alt="">
+                                    </a>
                                     <!-- Наведение на картинку товара -->
                                     {% comment %} <img class="hover-img" src="/static/img/product-img/product-2.jpg" alt=""> {% endcomment %}
                                     
@@ -208,6 +210,12 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        {% empty %}
+
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            Ничего не найдено
                         </div>
 
                         {% endfor %}
