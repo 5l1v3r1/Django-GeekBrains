@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
     'mainapp',
     'mainpage',
+    'shoppage',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -58,7 +59,9 @@ ROOT_URLCONF = 'styleshop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'styleshop/templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
