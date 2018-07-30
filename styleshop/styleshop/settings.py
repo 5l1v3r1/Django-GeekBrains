@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'mainapp',
     'mainpage',
     'shoppage',
+    'authapp',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -105,6 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'authapp.ShopUser'
 
 
 # Internationalization
