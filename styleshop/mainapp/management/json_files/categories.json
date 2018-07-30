@@ -1,0 +1,50 @@
+[
+    {
+        "id": 41,
+        "name": "Головные уборы",
+        "sex_id": 11,
+        "section_id": 21
+    },
+    {
+        "id": 42,
+        "name": "Шарфы",
+        "sex_id": 11,
+        "section_id": 21
+    },
+    {
+        "id": 43,
+        "name": "Кроссовки",
+        "sex_id": 11,
+        "section_id": 22
+    },
+    {
+        "id": 44,
+        "name": "Сланцы",
+        "sex_id": 11,
+        "section_id": 22
+    },
+    {
+        "id": 45,
+        "name": "Леггинсы",
+        "sex_id": 13,
+        "section_id": 23
+    },
+    {
+        "id": 46,
+        "name": "Поло",
+        "sex_id": 11,
+        "section_id": 23
+    },
+    {
+        "id": 47,
+        "name": "Спортивные брюки",
+        "sex_id": 12,
+        "section_id": 23
+    },
+    {
+        "id": 48,
+        "name": "Худи",
+        "sex_id": 11,
+        "section_id": 23
+    }
+]
