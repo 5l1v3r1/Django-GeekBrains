@@ -29,6 +29,18 @@
 
 {% endblock top_menu %}
 
+{% block login %}
+
+    {% if user.username %}
+        <a href="/auth/logout"><b><i>{{ user.username }}</i></b></a>
+        
+    {% else %}
+        <a href="/auth/login"><b><i>Войти</i></b></a>
+
+    {% endif %}
+
+{% endblock login %}
+
 {% block content %}
 
 <!-- Приветсвие -->
@@ -51,11 +63,11 @@
         <div class="row justify-content-center">
             <!-- Отображение секций -->
             
-            {% for item in sections %}
+            {% for section in sections %}
             <div class="col-12 col-sm-6 col-md-4">
-                <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(/media/{{ item.image }});">
+                <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(/media/{{ section.image }});">
                     <div class="catagory-content">
-                        <a href="/">{{ item.name }}</a>
+                        <a href="/shop/section/{{ section.id }}">{{ section.name }}</a>
                     </div>
                 </div>
             </div>
@@ -68,9 +80,11 @@
 <!-- Отображение брендов -->
 <div class="brands-area d-flex align-items-center justify-content-between">
     
-    {% for item in brands %}
+    {% for brand in brands %}
     <div class="single-brands-logo">
-        <img src="/media/{{ item.image }}" alt="">
+        <a href="/shop/brand/{{ brand.id }}">
+            <img src="/media/{{ brand.image }}" alt="">
+        </a>
     </div>
     {% endfor %}
     
