@@ -20,3 +20,9 @@ class LoginView(FormView):
             return  redirect(self.success_url)
         
         return render(request, self.template_name, {'form': form})
+
+class SignInView(FormView):
+
+    template_name = 'authapp/signin.html'
+    form_class = forms.SignInForm
+    success_url = '/'

@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 
 class LoginForm(forms.Form):
 
@@ -27,3 +28,21 @@ class LoginForm(forms.Form):
             raise forms.ValidationError('Неверный логин или пароль!')
         
         super(LoginForm, self).clean(*args, **kwargs)
+
+class SignInForm(forms.ModelForm):
+
+    class Meta:
+
+        model = User
+
+        fields = ['username', 'password']
+
+        widgets = {
+            'username': forms.widgets.TextInput(attrs={'class': 'input100'}),
+            'password': forms.widgets.PasswordInput(attrs={'class': 'input100'})
+        }
+
+        labels = {
+            'username': 'Логин',
+            'password': 'Пароль'
+        }
