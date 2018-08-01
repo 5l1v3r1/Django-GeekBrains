@@ -1,0 +1,17 @@
+[
+    {
+        "id": 21,
+        "name": "Аксессуары",
+        "image": "sections/bg-4.jpg"
+    },
+    {
+        "id": 22,
+        "name": "Обувь",
+        "image": "sections/bg-3.jpg"
+    },
+    {
+        "id": 23,
+        "name": "Одежда",
+        "image": "sections/bg-2.jpg"
+    }
+]

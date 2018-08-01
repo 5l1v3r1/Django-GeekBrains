@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+	<title>Вход</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="{% static 'authapp/images/icons/favicon.ico' %}"/>
+	<link rel="stylesheet" href="{% static 'authapp/vendor/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'authapp/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'authapp/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+	<link rel="stylesheet" href="{% static 'authapp/vendor/animate/animate.css' %}">
+	<link rel="stylesheet" href="{% static 'authapp/vendor/css-hamburgers/hamburgers.min.css' %}">
+	<link rel="stylesheet" href="{% static 'authapp/vendor/animsition/css/animsition.min.css' %}">
+	<link rel="stylesheet" href="{% static 'authapp/vendor/select2/select2.min.css' %}">
+	<link rel="stylesheet" href="{% static 'authapp/vendor/daterangepicker/daterangepicker.css' %}">
+	<link rel="stylesheet" href="{% static 'authapp/css/util.css' %}">
+	<link rel="stylesheet" href="{% static 'authapp/css/main.css' %}">
+</head>
+<body>
+
+	<div class="container-contact100">
+
+		<div class="wrap-contact100">
+
+			{% for error in form.non_field_errors %}
+
+				<div style="display: block; padding: 10px; font-size: 18px; border-radius: 40px; background: rgb(199, 31, 11); text-align: center; ">
+					<span><b>{{ error }}</b></span>
+				</div>
+				<br>
+	
+			{% empty %}
+	
+			{% endfor %}
+			
+			<form class="contact100-form" method="POST">
+				{% csrf_token %}
+
+				<span class="contact100-form-title" style="text-align: center">
+					Вход / Регистрация
+				</span>
+				
+				{% for field in form %}
+					<label for="{{ field.name }}" style="margin-left: 2em; background: #e6e6e6">
+						<b><i>{{ field.label }}</i></b>
+					</label>
+					<div class="wrap-input100">
+						{{ field }}
+					</div>
+				{% endfor %}
+
+				<div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button class="contact100-form-btn" style="font-size: 26px">
+							Вход
+						</button>
+					</div>
+
+					<div class="wrap-contact100-form-btn" style="margin-right: 0em; margin-left: auto">
+						<div class="contact100-form-bgbtn"></div>
+						<button class="contact100-form-btn">
+								<a href="/shop" style="color: white; font-size: 26px">Регистрация</a>
+						</button>
+					</div>					
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

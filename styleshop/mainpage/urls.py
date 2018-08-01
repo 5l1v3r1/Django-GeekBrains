@@ -2,5 +2,5 @@ from django.urls import path
 from mainpage.views import Index 
 
 urlpatterns = [
-    path('', Index.as_view(), name='index'),
+    path('', Index.as_view(), name='main'),
 ]

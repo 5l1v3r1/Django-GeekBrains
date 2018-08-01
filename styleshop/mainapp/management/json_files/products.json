@@ -1,0 +1,92 @@
+[
+    {
+        "name": "Crooped Hoddie",
+        "category_id": 48,
+        "brand_id": 33,
+        "sex_id": 13,
+        "images": "products/Cropped_Hoodie_1.png",
+        "cost": 3499,
+        "sale": 10
+    },
+    {
+        "name": "Heavyweight polo",
+        "category_id": 46,
+        "brand_id": 33,
+        "sex_id": 12,
+        "images": "products/Heavyweight_Polo_1.png",
+        "cost": 1990,
+        "sale": 25
+    },
+    {
+        "name": "Lacoste Sport",
+        "category_id": 43,
+        "brand_id": 31,
+        "sex_id": 12,
+        "images": "products/Lac_1.jpg",
+        "cost": 5200,
+        "sale": 0
+    },
+    {
+        "name": "Lacoste Wom Sport",
+        "category_id": 43,
+        "brand_id": 31,
+        "sex_id": 13,
+        "images": "products/Lacoste_1.jpg",
+        "cost": 4800,
+        "sale": 0
+    },
+    {
+        "name": "Lacoste big hat",
+        "category_id": 41,
+        "brand_id": 31,
+        "sex_id": 11,
+        "images": "products/Lacoste_hat_1.jpg",
+        "cost": 2000,
+        "sale": 0
+    },
+    {
+        "name": "Champ pants",
+        "category_id": 47,
+        "brand_id": 33,
+        "sex_id": 12,
+        "images": "products/Mesh_Pants_1.png",
+        "cost": 3100,
+        "sale": 0
+    },
+    {
+        "name": "Pigment-Dyed Pullover Hoodie",
+        "category_id": 48,
+        "brand_id": 33,
+        "sex_id": 12,
+        "images": "products/Pigment-Dyed_Pullover_Hoodie_1.png",
+        "cost": 4300,
+        "sale": 0
+    },
+    {
+        "name": "Tommy's polo",
+        "category_id": 46,
+        "brand_id": 32,
+        "sex_id": 13,
+        "images": "products/Polo_TH_1.jpg",
+        "cost": 3100,
+        "sale": 25
+    },
+    {
+        "name": "Tommy's hat",
+        "category_id": 41,
+        "brand_id": 32,
+        "sex_id": 11,
+        "images": "products/TJ_new_hat_1.jpg",
+        "cost": 2300,
+        "sale": 0
+    },
+    {
+        "name": "Tommy's hoddies",
+        "category_id": 48,
+        "brand_id": 32,
+        "sex_id": 13,
+        "images": "products/TJ_sport_1.jpg",
+        "cost": 2990,
+        "sale": 0
+    }
+]
