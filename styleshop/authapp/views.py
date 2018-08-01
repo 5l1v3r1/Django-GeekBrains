@@ -17,7 +17,7 @@ class LoginView(FormView):
             
             login(request, form.user)
 
-            return  redirect(self.success_url)
+            return redirect(self.success_url)
         
         return render(request, self.template_name, {'form': form})
 
@@ -26,3 +26,16 @@ class SignInView(FormView):
     template_name = 'authapp/signin.html'
     form_class = forms.SignInForm
     success_url = '/'
+
+    def post(self, request):
+
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+
+            user = form.save()
+            login(request, user)
+
+            return redirect(self.success_url)
+
+        return render(request, self.template_name, {'form': form})

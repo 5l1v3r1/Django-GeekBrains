@@ -48,6 +48,9 @@
 					</label>
 					<div class="wrap-input100">
 						{{ field }}
+						{% for error in field.errors %}
+							<span style="color: red; padding-left: 4px">{{ error }}</span>
+						{% endfor %}
 					</div>
 				{% endfor %}
 
