@@ -22,9 +22,10 @@
     <div class="container-contact100">
         <div class="wrap-contact100">
             <form method="POST" class="contact100-form validate-form">
-            {% block form %}
-            
-            {% endblock form %}
+				{% csrf_token %}	
+				{% block form %}
+				
+				{% endblock form %}
             </form>
         </div>
     </div>
