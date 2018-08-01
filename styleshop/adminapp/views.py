@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views.generic import CreateView
+from django.http import QueryDict
 from . import forms
+from shoppage.models import Product
 
-def create(request):
+class CreateProduct(CreateView):
 
-    form = forms.ProductForm
-    name = 'Товар'
-
-    return render(request, 'adminapp/form.html', {'form': form, 'name': name})
+    model = Product
+    form_class = forms.ProductForm
+    success_url = '/shop'
+    template_name = 'adminapp/form.html'

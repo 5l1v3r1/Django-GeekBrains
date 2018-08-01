@@ -1,19 +1,28 @@
-{% extends "base_admin.html" %}
+{% extends "base_form.html" %}
 {% load static %}
 
-{% block title %}Создание: {{ name }}{% endblock title %}
+{% block title %}Создание{% endblock title %}
 
 {% block form %}
 
 <span class="contact100-form-title">
-	Создание: {{ name }}
+	Создание
 </span>
+
+{% for error in form.non_field_errors %}
+
+	<p style="color: red">{{ error }}</p>
+
+{% endfor %}
 
 {% for field in form %}
 
 	<label for="field.name" style="color: #403866; font-size: 18px;">{{ field.label }}</label>
 	<div class="wrap-input100 validate-input" data-validate="Please enter your name">
 			{{ field }}
+			{% for error in field.errors %}
+				<small style="color: red">{{ error }}</small>
+			{% endfor %}
 	</div>
 
 {% endfor %}
