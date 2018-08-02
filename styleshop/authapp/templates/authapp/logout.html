@@ -3,7 +3,7 @@
 
 <html lang="en">
 <head>
-	<title>Вход</title>
+	<title>Выход</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="{% static 'authapp/images/icons/favicon.ico' %}"/>
@@ -23,48 +23,30 @@
 	<div class="container-contact100">
 
 		<div class="wrap-contact100">
-
-			{% for error in form.non_field_errors %}
-
-				<div style="display: block; padding: 10px; font-size: 18px; border-radius: 40px; background: rgb(199, 31, 11); text-align: center; ">
-					<span><b>{{ error }}</b></span>
-				</div>
-				<br>
-	
-			{% empty %}
-	
-			{% endfor %}
 			
-			<form class="contact100-form" method="POST">
+			<form class="contact100-form" method="POST" enctype="multipart/form-data">
 				{% csrf_token %}
 
 				<span class="contact100-form-title" style="text-align: center">
-					Вход / Регистрация
+					Вы действительно хотите выйти
+					<br>
+					из своей учетной записи?
 				</span>
 				
-				{% for field in form %}
-					<label for="{{ field.name }}" style="margin-left: 2em; background: #e6e6e6">
-						<b><i>{{ field.label }}</i></b>
-					</label>
-					<div class="wrap-input100">
-						{{ field }}
-					</div>
-				{% endfor %}
-
 				<div class="container-contact100-form-btn">
 					<div class="wrap-contact100-form-btn">
 						<div class="contact100-form-bgbtn"></div>
 						<button class="contact100-form-btn" style="font-size: 26px">
-							Вход
+							Да
 						</button>
 					</div>
 
 					<div class="wrap-contact100-form-btn" style="margin-right: 0em; margin-left: auto; width: 160px">
-						<a href="/auth/signin">
+						<a href="/">
 							<div class="contact100-form-bgbtn"></div>
-							<center style="color: white; font-size: 26px; margin-top: 11px">Регистрация</center>
+							<center style="color: white; font-size: 26px; margin-top: 11px">Нет</center>
 						</a>
-					</div>					
+					</div>
 				</div>
 			</form>
 		</div>

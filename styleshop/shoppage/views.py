@@ -24,6 +24,7 @@ class Shop(View):
         sections = Section.objects.all()
         categories = Category.objects.all()
         brands = Brand.objects.all()
+        user = request.user
 
         page_title = 'Все товары'
 
@@ -52,6 +53,7 @@ class Shop(View):
                 'categories': categories,
                 'brands': brands,
                 'count': count,
+                'user': user,
                 'page_title': page_title
             }
         )

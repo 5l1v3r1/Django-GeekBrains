@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.views.generic import FormView
-from . import forms
+from django.views.generic.base import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from . import forms, mixins
 
-class LoginView(FormView):
+class LoginView(mixins.AnonRequired, FormView):
 
     template_name = 'authapp/login.html'
     success_url = '/'
@@ -21,7 +23,23 @@ class LoginView(FormView):
         
         return render(request, self.template_name, {'form': form})
 
-class SignInView(FormView):
+class LogoutView(LoginRequiredMixin, TemplateView):
+
+    template_name='authapp/logout.html'
+    success_url='/'
+    main_url='/'
+
+    def post(self, request):
+
+        print(dir(request.POST))
+        print('-'*100)
+        print(request.POST.values)
+
+        logout(request)
+
+        return redirect(self.success_url)
+
+class SignInView(mixins.AnonRequired, FormView):
 
     template_name = 'authapp/signin.html'
     form_class = forms.SignInForm
