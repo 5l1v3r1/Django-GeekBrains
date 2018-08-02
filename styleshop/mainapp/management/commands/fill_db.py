@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from django.contrib.auth.models import User
+from authapp.models import ShopUser
 from mainpage.models import Section, Category, Sex, Brand
 from shoppage.models import Product
 import json, os
@@ -46,6 +46,7 @@ class Command(BaseCommand):
             add_product.save()
         
         if input('Create superuser? (y/n)') == 'y':
-            User.objects.create_superuser(
-                'admin', 'dima.gonchar.29.08.13@gmail.com', 'admin'
+            ShopUser.objects.create_superuser(
+                'admin', 'dima.gonchar.29.08.13@gmail.com', 'admin', 
+                age=19, birth_date='1998-09-03'
             )

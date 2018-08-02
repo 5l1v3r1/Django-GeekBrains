@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
+from authapp.models import ShopUser
 
 class LoginForm(forms.Form):
 
@@ -36,18 +36,23 @@ class SignInForm(forms.ModelForm):
 
     class Meta:
 
-        model = User
+        model = ShopUser
 
-        fields = ['username', 'password']
+        fields = ['username', 'age', 'birth_date', 'email','password']
 
         widgets = {
             'username': forms.widgets.TextInput(attrs={'class': 'input100'}),
-            'password': forms.widgets.PasswordInput(attrs={'class': 'input100'})
+            'password': forms.widgets.PasswordInput(attrs={'class': 'input100'}),
+            'age': forms.widgets.NumberInput(attrs={'class': 'input100'}),
+            'birth_date': forms.widgets.DateInput(attrs={'class': 'input100'}),
+            'email': forms.widgets.EmailInput(attrs={'class': 'input100'})
         }
 
         labels = {
             'username': 'Логин',
-            'password': 'Пароль'
+            'password': 'Пароль',
+            'birth_date': 'Дата рождения (ГГГГ-ММ-ДД)',
+            'email': 'Электронная почта'
         }
 
     def clean_password_confirm(self):
