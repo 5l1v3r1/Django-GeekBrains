@@ -58,8 +58,22 @@ class Shop(View):
             }
         )
 
-class ProductDetails(DetailView):
+class ProductDetails(View):
     
-    model = models.Product
     template_name = 'shoppage/single-product-details.html'
-    context_object_name = 'product'
+
+    def get(self, request, pk):
+
+        product = models.Product.objects.get(pk=pk)
+        sections = Section.objects.all()
+        categories = Category.objects.all()
+        brands = Brand.objects.all()
+        user = request.user
+
+        return render(request, self.template_name, {
+            'product': product,
+            'sections': sections,
+            'categories': categories,
+            'brands': brands,
+            'user': user
+        }) 
