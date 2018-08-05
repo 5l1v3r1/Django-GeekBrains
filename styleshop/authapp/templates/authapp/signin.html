@@ -3,7 +3,7 @@
 
 <html lang="en">
 <head>
-	<title>Вход</title>
+	<title>Регистрация</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="{% static 'authapp/images/icons/favicon.ico' %}"/>
@@ -39,7 +39,7 @@
 				{% csrf_token %}
 
 				<span class="contact100-form-title" style="text-align: center">
-					Вход / Регистрация
+					Регистрация
 				</span>
 				
 				{% for field in form %}
@@ -48,6 +48,9 @@
 					</label>
 					<div class="wrap-input100">
 						{{ field }}
+						{% for error in field.errors %}
+							<span style="color: red; padding-left: 4px">{{ error }}</span>
+						{% endfor %}
 					</div>
 				{% endfor %}
 
@@ -55,16 +58,9 @@
 					<div class="wrap-contact100-form-btn">
 						<div class="contact100-form-bgbtn"></div>
 						<button class="contact100-form-btn" style="font-size: 26px">
-							Вход
+							Зарегистрироваться
 						</button>
-					</div>
-
-					<div class="wrap-contact100-form-btn" style="margin-right: 0em; margin-left: auto; width: 160px">
-						<a href="/auth/signin">
-							<div class="contact100-form-bgbtn"></div>
-							<center style="color: white; font-size: 26px; margin-top: 11px">Регистрация</center>
-						</a>
-					</div>					
+					</div>				
 				</div>
 			</form>
 		</div>

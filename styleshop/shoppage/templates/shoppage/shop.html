@@ -31,6 +31,18 @@
 
 {% endblock top_menu %}
 
+{% block login %}
+
+    {% if user.username %}
+        <a href="/auth/logout"><b><i>{{ user.username }}</i></b></a>
+        
+    {% else %}
+        <a href="/auth/login"><b><i>Войти</i></b></a>
+
+    {% endif %}
+
+{% endblock login %}
+
 {% block content %}
 
 <!-- Название товаров -->

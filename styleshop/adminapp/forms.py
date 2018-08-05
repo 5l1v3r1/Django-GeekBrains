@@ -7,7 +7,7 @@ class ProductForm(forms.ModelForm):
 
         model = Product
 
-        fields = ['name', 'category', 'brand', 'sex', 'cost', 'sale', 'images']
+        fields = ['name', 'category', 'brand', 'sex', 'cost', 'sale', 'images', 'description']
 
         widgets = {
             'name': forms.widgets.TextInput(attrs={'class': 'input100'}),
@@ -16,7 +16,8 @@ class ProductForm(forms.ModelForm):
             'sex': forms.widgets.Select(attrs={'class': 'input100'}),
             'cost': forms.widgets.NumberInput(attrs={'class': 'input100'}),
             'sale': forms.widgets.NumberInput(attrs={'class': 'input100'}),
-            'images': forms.widgets.ClearableFileInput()
+            'images': forms.widgets.ClearableFileInput(),
+            'description': forms.widgets.Textarea(attrs={'class': 'input100'})
         }
 
         labels = {
@@ -26,5 +27,6 @@ class ProductForm(forms.ModelForm):
             'sex': 'Пол',
             'cost': 'Цена',
             'sale': 'Размер скидки',
-            'images': 'Фотография'
+            'images': 'Фотография',
+            'description': 'О товаре'
         }

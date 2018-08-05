@@ -6,7 +6,8 @@
         "sex_id": 13,
         "images": "products/Cropped_Hoodie_1.png",
         "cost": 3499,
-        "sale": 10
+        "sale": 10,
+        "description": "Тут находится длинный текст про товар, который покупатель видит на странице товара"
     },
     {
         "name": "Heavyweight polo",
@@ -15,7 +16,8 @@
         "sex_id": 12,
         "images": "products/Heavyweight_Polo_1.png",
         "cost": 1990,
-        "sale": 25
+        "sale": 25,
+        "description": "Тут находится длинный текст про товар, который покупатель видит на странице товара"
     },
     {
         "name": "Lacoste Sport",
@@ -24,7 +26,8 @@
         "sex_id": 12,
         "images": "products/Lac_1.jpg",
         "cost": 5200,
-        "sale": 0
+        "sale": 0,
+        "description": "Тут находится длинный текст про товар, который покупатель видит на странице товара"
     },
     {
         "name": "Lacoste Wom Sport",
@@ -33,7 +36,8 @@
         "sex_id": 13,
         "images": "products/Lacoste_1.jpg",
         "cost": 4800,
-        "sale": 0
+        "sale": 0,
+        "description": "Тут находится длинный текст про товар, который покупатель видит на странице товара"
     },
     {
         "name": "Lacoste big hat",
@@ -42,7 +46,8 @@
         "sex_id": 11,
         "images": "products/Lacoste_hat_1.jpg",
         "cost": 2000,
-        "sale": 0
+        "sale": 0,
+        "description": "Тут находится длинный текст про товар, который покупатель видит на странице товара"
     },
     {
         "name": "Champ pants",
@@ -51,7 +56,8 @@
         "sex_id": 12,
         "images": "products/Mesh_Pants_1.png",
         "cost": 3100,
-        "sale": 0
+        "sale": 0,
+        "description": "Тут находится длинный текст про товар, который покупатель видит на странице товара"
     },
     {
         "name": "Pigment-Dyed Pullover Hoodie",
@@ -60,7 +66,8 @@
         "sex_id": 12,
         "images": "products/Pigment-Dyed_Pullover_Hoodie_1.png",
         "cost": 4300,
-        "sale": 0
+        "sale": 0,
+        "description": "Тут находится длинный текст про товар, который покупатель видит на странице товара"
     },
     {
         "name": "Tommy's polo",
@@ -69,7 +76,8 @@
         "sex_id": 13,
         "images": "products/Polo_TH_1.jpg",
         "cost": 3100,
-        "sale": 25
+        "sale": 25,
+        "description": "Тут находится длинный текст про товар, который покупатель видит на странице товара"
     },
     {
         "name": "Tommy's hat",
@@ -78,7 +86,8 @@
         "sex_id": 11,
         "images": "products/TJ_new_hat_1.jpg",
         "cost": 2300,
-        "sale": 0
+        "sale": 0,
+        "description": "Тут находится длинный текст про товар, который покупатель видит на странице товара"
     },
     {
         "name": "Tommy's hoddies",
@@ -87,6 +96,7 @@
         "sex_id": 13,
         "images": "products/TJ_sport_1.jpg",
         "cost": 2990,
-        "sale": 0
+        "sale": 0,
+        "description": "Тут находится длинный текст про товар, который покупатель видит на странице товара"
     }
 ]

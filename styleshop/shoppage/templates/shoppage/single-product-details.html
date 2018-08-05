@@ -5,6 +5,46 @@
 {{ product.name }}
 {% endblock title %}
 
+{% block top_menu %}
+
+    {% for section in sections %}
+        <ul class="single-mega cn-col-4">
+
+            <li class="title">{{ section.name }}</li>
+
+            {% for category in categories %}
+
+                {% if category.section.id == section.id %}
+                    <li><a href="/shop/category/{{ category.id }}">{{ category.name }}</a></li>
+                {% endif %}
+
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
+    <ul class="single-mega cn-col-4">
+        <li class="title">Брэнды</li>
+            
+        {% for brand in brands %}
+            <li><a href="/shop/brand/{{ brand.id }}">{{ brand.name }}</a></li>
+        {% endfor %}
+
+    </ul>
+
+{% endblock top_menu %}
+
+{% block login %}
+
+    {% if user.username %}
+        <a href="/auth/logout"><b><i>{{ user.username }}</i></b></a>
+        
+    {% else %}
+        <a href="/auth/login"><b><i>Войти</i></b></a>
+
+    {% endif %}
+
+{% endblock login %}
+
 {% block content %}
 
 <!-- ##### Single Product Details Area Start ##### -->
@@ -12,7 +52,7 @@
 
     <!-- Фотографии товара -->
     <div class="single_product_thumb clearfix">
-        <img src="/media/{{ product.images }}" alt="">
+        <img style="max-height: 700px" src="/media/{{ product.images }}" alt="">
     </div>
 
     <div class="single_product_desc clearfix">
@@ -28,7 +68,7 @@
             {{ product.cost }} Руб
             {% endif %}
         </p>
-        <p class="product-desc">Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna vehicula, nec maximus est sollicitudin.</p>
+        <p class="product-desc">{{ product.description }}</p>
 
         <!-- Form -->
         <form class="cart-form clearfix" method="post">
