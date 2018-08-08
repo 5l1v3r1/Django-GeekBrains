@@ -1,7 +1,25 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import View, DetailView
+from django.views.generic import View, DetailView, ListView
+from django.core.paginator import Paginator
 from . import models
 from mainpage.models import Section, Category, Brand
+
+class ShopList(ListView):
+
+    model = models.Product
+    template_name = 'shoppage/shop.html'
+    context_object_name = 'products'
+    paginate_by = 6
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        context['sections'] = Section.objects.all()
+        context['categories'] = Category.objects.all()
+        context['brands'] = Brand.objects.all()
+        context['page_title'] = 'Все товары'
+        
+        return context
 
 class Shop(View):
 
@@ -24,9 +42,6 @@ class Shop(View):
         sections = Section.objects.all()
         categories = Category.objects.all()
         brands = Brand.objects.all()
-        user = request.user
-
-        page_title = 'Все товары'
 
         if category_key:
             all_products = models.Product.objects.filter(category_id=category_key)
@@ -40,40 +55,35 @@ class Shop(View):
             all_products = models.Product.objects.filter(brand_id=brand_key)
             page_title = self.get_page_title([i for i in brands], brand_key)
 
-        if 'all_products' not in locals():
-            all_products = models.Product.objects.all()
-
-        count = len(all_products)
+        paginator = Paginator(all_products, 6)
+        page = request.GET.get('page')
+        if not page:
+            page = 1
+            
+        all_products = paginator.get_page(page)
 
         return render(
             request, 'shoppage/shop.html', 
             {
-                'products': all_products,
+                'page_obj': all_products,
                 'sections': sections,
                 'categories': categories,
                 'brands': brands,
-                'count': count,
-                'user': user,
                 'page_title': page_title
             }
         )
 
-class ProductDetails(View):
+class ProductDetails(DetailView):
     
+    model = models.Product
     template_name = 'shoppage/single-product-details.html'
+    context_object_name = 'product'
 
-    def get(self, request, pk):
+    def get_context_data(self, **kwargs):
 
-        product = models.Product.objects.get(pk=pk)
-        sections = Section.objects.all()
-        categories = Category.objects.all()
-        brands = Brand.objects.all()
-        user = request.user
+        context = super().get_context_data(**kwargs)
+        context['sections'] = Section.objects.all()
+        context['categories'] = Category.objects.all()
+        context['brands'] = Brand.objects.all()
 
-        return render(request, self.template_name, {
-            'product': product,
-            'sections': sections,
-            'categories': categories,
-            'brands': brands,
-            'user': user
-        }) 
+        return context

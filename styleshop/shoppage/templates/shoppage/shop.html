@@ -19,7 +19,7 @@
             {% endfor %}
         </ul>
     {% endfor %}
-
+    
     <ul class="single-mega cn-col-4">
         <li class="title">Брэнды</li>
             
@@ -118,25 +118,6 @@
                         </div>
                     </div>
 
-                    <!-- Виджет выбора цвета -->
-                    <div class="widget color mb-50">
-                        <p class="widget-title2 mb-30">Color</p>
-                        <div class="widget-desc">
-                            <ul class="d-flex">
-                                <li><a href="/shop" class="color1"></a></li>
-                                <li><a href="/shop" class="color2"></a></li>
-                                <li><a href="/shop" class="color3"></a></li>
-                                <li><a href="/shop" class="color4"></a></li>
-                                <li><a href="/shop" class="color5"></a></li>
-                                <li><a href="/shop" class="color6"></a></li>
-                                <li><a href="/shop" class="color7"></a></li>
-                                <li><a href="/shop" class="color8"></a></li>
-                                <li><a href="/shop" class="color9"></a></li>
-                                <li><a href="/shop" class="color10"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-
                     <!-- Виджет брэндов -->
                     <div class="widget brands mb-50">
                         <p class="widget-title2 mb-30">Брэнды</p>
@@ -156,19 +137,25 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="product-topbar d-flex align-items-center justify-content-between">
+                                
                                 <!-- Количестов найденных товаров -->
                                 <div class="total-products">
-                                    <p>Товаров найдено: <span> {{ count }} </span></p>
+                                    {% if page_obj %}
+                                        <p>Найденные товары:</p>
+                                    {% else %}
+                                        <p>Соответствующих товаров нет</p>
+                                    {% endif %}
                                 </div>
+                                
                                 <!-- Сортировка -->
                                 <div class="product-sorting d-flex">
-                                    <p>Sort by:</p>
+                                    <p>Сортиторовать по:</p>
                                     <form action="#" method="get">
                                         <select name="select" id="sortByselect">
-                                            <option value="value">Highest Rated</option>
-                                            <option value="value">Newest</option>
-                                            <option value="value">Price: $$ - $</option>
-                                            <option value="value">Price: $ - $$</option>
+                                            <option value="value">Популярные</option>
+                                            <option value="value">Новые</option>
+                                            <option value="value">Цена (по убыванию)</option>
+                                            <option value="value">Цена (по возрастанию)</option>
                                         </select>
                                         <input type="submit" class="d-none" value="">
                                     </form>
@@ -180,7 +167,7 @@
                     <div class="row">
 
                         <!-- Карточка товара -->
-                        {% for product in products %}
+                        {% for product in page_obj.object_list %}
                         
                         <div class="col-12 col-sm-6 col-lg-4">
                             <div class="single-product-wrapper">
@@ -224,28 +211,36 @@
                             </div>
                         </div>
 
-                        {% empty %}
-
-                        <div class="col-12 col-sm-6 col-lg-4">
-                            Ничего не найдено
-                        </div>
-
                         {% endfor %}
 
                     </div>
                 </div>
+                
                 <!-- Перелистывание страниц вывода товаров -->
-                <nav aria-label="navigation">
-                    <ul class="pagination mt-50 mb-70">
-                        <li class="page-item"><a class="page-link" href="/shop"><i class="fa fa-angle-left"></i></a></li>
-                        <li class="page-item"><a class="page-link" href="/shop">1</a></li>
-                        <li class="page-item"><a class="page-link" href="/shop">2</a></li>
-                        <li class="page-item"><a class="page-link" href="/shop">3</a></li>
-                        <li class="page-item"><a class="page-link" href="/shop">...</a></li>
-                        <li class="page-item"><a class="page-link" href="/shop">21</a></li>
-                        <li class="page-item"><a class="page-link" href="/shop"><i class="fa fa-angle-right"></i></a></li>
-                    </ul>
-                </nav>
+                {% if page_obj %}
+                    <nav aria-label="navigation">
+                        <ul class="pagination mt-50 mb-70">
+    
+                            {% if page_obj.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+                            {% endif %}
+    
+                            {% for number in page_obj.paginator.page_range %}
+                                {% if number == page_obj.number %}
+                                    <li class="page-item"><a class="page-link">{{ number }}</a></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ number }}">{{ number }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            
+                            {% if page_obj.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+                            {% endif %}
+    
+                        </ul>
+                    </nav>
+                {% endif %}
+                
             </div>
         </div>
     </div>
