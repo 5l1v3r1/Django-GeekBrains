@@ -1,10 +1,11 @@
 from django.contrib import admin
+from django.template.loader import render_to_string
 from . import models
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'category', 'brand', 'cost', 'sale')
+    list_display = ('name', 'picture', 'category', 'brand', 'cost', 'sale')
     list_filter = ('category', 'brand')
 
     search_fields = ('name',)
@@ -17,3 +18,7 @@ class ProductAdmin(admin.ModelAdmin):
             'fields': (('cost', 'sale'), 'images', 'description')
         })
     )
+
+    def picture(self, obj):
+
+        return render_to_string('shoppage/admin/picture.html', {'image': obj.images})
