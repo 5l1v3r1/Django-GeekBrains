@@ -18,9 +18,12 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'adminapp/css/main.css' %}">
 </head>
 <body>
-    
+
     <div class="container-contact100">
         <div class="wrap-contact100">
+			<div style="background-color: #f2f2f2; padding: 4px; text-align: center; margin-bottom: 40px">
+				<a href="/shop" style="font-size: 20px"><i class="fa fa-home"></i> На главную</a>
+			</div>
             <form method="POST" class="contact100-form validate-form" enctype="multipart/form-data">
 				{% csrf_token %}	
 				{% block form %}

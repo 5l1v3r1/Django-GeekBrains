@@ -1,0 +1,18 @@
+{% extends "base_form.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block form %}
+
+<span class="contact100-form-title">
+	{{ title }}
+</span>
+
+<div class="container-contact100-form-btn">
+	<button class="contact100-form-btn" style="color: red">
+		<span>{{ button_txt }}</span>
+	</button>
+</div>
+
+{% endblock form %}

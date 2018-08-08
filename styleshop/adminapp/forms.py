@@ -11,9 +11,9 @@ class ProductForm(forms.ModelForm):
 
         widgets = {
             'name': forms.widgets.TextInput(attrs={'class': 'input100'}),
-            'category': forms.widgets.Select(attrs={'class': 'input100'}), 
-            'brand': forms.widgets.Select(attrs={'class': 'input100'}),
-            'sex': forms.widgets.Select(attrs={'class': 'input100'}),
+            'category': forms.widgets.Select(attrs={'class': 'input100', 'style': 'padding-left: 5px'}), 
+            'brand': forms.widgets.Select(attrs={'class': 'input100', 'style': 'padding-left: 5px'}),
+            'sex': forms.widgets.Select(attrs={'class': 'input100', 'style': 'padding-left: 5px'}),
             'cost': forms.widgets.NumberInput(attrs={'class': 'input100'}),
             'sale': forms.widgets.NumberInput(attrs={'class': 'input100'}),
             'images': forms.widgets.ClearableFileInput(),
