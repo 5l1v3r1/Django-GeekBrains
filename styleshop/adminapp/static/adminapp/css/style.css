@@ -1,21 +1,25 @@
-@import "https://fonts.googleapis.com/css?family=Karla";
-* {
+@import url('https://fonts.googleapis.com/css?family=Amarante');
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   box-sizing: border-box;
 }
-
-body {
-  font-family: karla;
-  color: #666;
-  font-size: 18px;
+body { 
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1;
+  color: #585858;
+  background: rgb(228, 224, 224);
+  padding: 22px 10px;
+  padding-bottom: 55px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #444;
-}
+table { border-collapse: collapse; border-spacing: 0; }
+img { border: 0; max-width: 100px; }
 
-header {
-  position: relative;
-  padding: 20px 0 0;
+h1 { 
+  font-family: 'Amarante', Tahoma, sans-serif;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .menu {
@@ -46,4 +50,47 @@ header {
 .menu .sub-menu-shadow {
   position: absolute;
   display: none;
+}
+
+#wrapper {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 17px;
+}
+
+#keywords {
+  margin: 0 auto;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+#keywords thead {
+  cursor: pointer;
+  background: #9ee0d8;
+}
+#keywords thead tr th { 
+  font-weight: bold;
+  padding: 12px 30px;
+  padding-left: 42px;
+}
+#keywords thead tr th span { 
+  padding-right: 20px;
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+}
+
+#keywords thead tr th.headerSortUp, #keywords thead tr th.headerSortDown {
+  background: #acc8dd;
+}
+
+#keywords tbody tr { 
+  color: #555;
+}
+#keywords tbody tr td {
+  text-align: center;
+  padding: 15px 10px;
+}
+#keywords tbody tr td.lalign {
+  text-align: left;
 }
