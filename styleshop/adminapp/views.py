@@ -1,7 +1,25 @@
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.shortcuts import render
+from django.views.generic import CreateView, UpdateView, DeleteView, View
 from . import forms
 from shoppage.models import Product
 from authapp.mixins import StaffRequired
+
+class MainView(View):
+
+    def get(self, request):
+
+        return render(request, 'adminapp/admin.html', 
+        {
+            'menu': [
+                {'name': 'Товары', 'link': 'product'},
+                {'name': 'Брэнды', 'link': 'brand'},
+                {'name': 'Секции', 'link': 'section'},
+                {'name': 'Категории', 'link': 'category'},
+                {'name': 'Пользователи', 'link': 'user'},
+            ],
+            'title': 'Главная',
+            'page_text': 'Добро пожаловать в админ-панель магазина StyleShop. Для просмотра/добавления/редактирования/удаления объектов перейдите на их страницу по ссылке в меню или ниже.'
+        })
 
 #------------ Контроллеры товаров ------------#
 class CreateProduct(StaffRequired, CreateView):
@@ -48,3 +66,12 @@ class DeleteProduct(StaffRequired, DeleteView):
         context['button_txt'] = 'Удалить'
 
         return context
+
+#------------ Контроллеры категорий ------------#
+
+#------------ Контроллеры пола ------------#
+
+#------------ Контроллеры секций ------------#
+
+#------------ Контроллеры брэндов ------------#
+

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
@@ -8,40 +9,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <title>
-        Меню
+        {{ title }}
     </title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{% static 'adminapp/css/style.css' %}">
 </head>
 
 <body>
 
     <header class="main-header">
         <ul class="menu">
-            <li class="menu__item" style="position: absolute; right:80%; color: black"><a href="#" class="home"><span>StyleShop</span> Админ</a></li>
-            <li class="menu__item" data-sub="product"><a href="#">Product</a></li>
-            <li class="menu__item" data-sub="developer"><a href="#">Developer</a></li>
-            <li class="menu__item" data-sub="company"><a href="#">Company</a></li>
+            <li class="menu__item" style="position: absolute; right:80%; color: black"><a href="" class="home"><span>StyleShop</span> {{ user.username }}</a></li>
+            {% for object in menu %}
+                <li class="menu__item" data-sub="product"><a href="{{ object.link }}">{{ object.name }}</a></li>
+            {% endfor %}
         </ul>
     </header>
+    
+    {% if page_text %}
+        <div class="page-text">
+            <span>{{ page_text }}</span>
+        </div>
+    {% endif %}
 
-    <div id="wrapper">
-        <h1>Название таблицы</h1>
+    {% if title == 'Главная' %}
+        <div class="page-text">
+            <ul>
+                {% for object in menu %}
+                    <li><a href="{{ object.link }}">{{ object.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
 
-        <table id="keywords" cellspacing="0" cellpadding="0">
-            <thead>
-                <tr>
-                    <th><span>Главное поле</span></th>
-                    <th><span>Еще гл поле</span></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="lalign">Первое поле</td>
-                    <td>Второе поле</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    {% else %}
+
+        <div id="wrapper">
+            <h1>Название таблицы</h1>
+
+            <table id="keywords" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th><span>Главное поле</span></th>
+                        <th><span>Еще гл поле</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="lalign">Первое поле</td>
+                        <td>Второе поле</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    {% endif %}
 
 </body>
 

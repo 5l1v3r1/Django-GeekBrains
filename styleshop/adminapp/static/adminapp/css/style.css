@@ -52,6 +52,25 @@ h1 {
   display: none;
 }
 
+.page-text {
+  width: 800px;
+  padding-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Amarante', Tahoma, sans-serif;
+  font-size: 25px;
+  line-height: 35px;
+}
+
+.page-text a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.page-text a:hover {
+  color: rgb(71, 90, 196);
+}
+
 #wrapper {
   display: block;
   width: 100%;
