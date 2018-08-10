@@ -39,6 +39,7 @@ class TableProduct(StaffRequired, ListView):
             {'name': 'Категории', 'link': 'category'},
             {'name': 'Пользователи', 'link': 'user'},
         ]
+        context['new_name'] = 'товар'
         context['title'] = 'Товары'
         context['table_fields'] = ['Название', 'Категория', 'Брэнд', 'Цена', 'Скидка', 'Удаление']
 

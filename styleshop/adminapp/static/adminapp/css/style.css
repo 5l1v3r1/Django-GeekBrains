@@ -52,6 +52,17 @@ h1 {
   display: none;
 }
 
+.create {
+  position: absolute;
+  font-size: 25px;
+  right: 73%;
+  text-decoration: none;
+  color: inherit;
+}
+.create:hover {
+  color: rgb(71, 90, 196);
+}
+
 .page-text {
   width: 800px;
   padding-top: 50px;

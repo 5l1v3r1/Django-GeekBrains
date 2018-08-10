@@ -18,7 +18,7 @@
 
     <header class="main-header">
         <ul class="menu">
-            <li class="menu__item" style="position: absolute; right:80%; color: black"><a href="" class="home"><span>StyleShop</span> {{ user.username }}</a></li>
+            <li class="menu__item" style="position: absolute; right:80%; color: black"><a href="/ssadmin" class="home"><span>StyleShop</span> {{ user.username }}</a></li>
             {% for object in menu %}
                 <li class="menu__item" data-sub="product"><a href="{{ object.link }}">{{ object.name }}</a></li>
             {% endfor %}
@@ -43,7 +43,7 @@
     {% else %}
 
         <div id="wrapper">
-            <h1>{{ title }}</h1>
+            <h1><a class="create" href="product/create">Добавить {{ new_name }}</a> {{ title }}</h1>
 
             <table id="keywords" cellspacing="0" cellpadding="0">
                 <thead>
