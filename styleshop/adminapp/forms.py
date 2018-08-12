@@ -50,21 +50,21 @@ class BrandForm(forms.ModelForm):
             'image': forms.widgets.ClearableFileInput()
         }
 
-class SexForm(forms.ModelForm):
+# class SexForm(forms.ModelForm):
 
-    class Meta:
+#     class Meta:
 
-        model = Sex
+#         model = Sex
 
-        fields = ['name']
+#         fields = ['name']
 
-        labels = {
-            'name': 'Название', 
-        }
+#         labels = {
+#             'name': 'Название', 
+#         }
 
-        widgets = {
-            'name': forms.widgets.TextInput(attrs={'class': 'input100'}),
-        }
+#         widgets = {
+#             'name': forms.widgets.TextInput(attrs={'class': 'input100'}),
+#         }
 
 class SectionForm(forms.ModelForm):
 
