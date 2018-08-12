@@ -72,14 +72,16 @@ class SectionForm(forms.ModelForm):
 
         model = Section
 
-        fields = ['name']
+        fields = ['name', 'image']
 
         labels = {
-            'name': 'Название', 
+            'name': 'Название',
+            'image': 'Логотип'
         }
 
         widgets = {
             'name': forms.widgets.TextInput(attrs={'class': 'input100'}),
+            'image': forms.widgets.ClearableFileInput()
         }
 
 class CategoryForm(forms.ModelForm):
