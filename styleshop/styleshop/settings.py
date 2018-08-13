@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'shoppage',
     'authapp',
     'adminapp',
+    'cartapp',
 
     'django.contrib.admin',
     'django.contrib.auth',
