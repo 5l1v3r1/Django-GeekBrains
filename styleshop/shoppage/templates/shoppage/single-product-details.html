@@ -61,11 +61,15 @@
             <h2>{{ product.name }}</h2>
         </a>
         <p class="product-price">
-            {% if product.sale > 0 %}
-            <span class="old-price">{{ product.cost }} Руб</span> 
-            -{{ product.sale }}%
+            {% if product.quantity > 0 %}
+                {% if product.sale > 0 %}
+                <span class="old-price">{{ product.cost }} Руб</span> 
+                -{{ product.sale }}%
+                {% else %}
+                {{ product.cost }} Руб
+                {% endif %}
             {% else %}
-            {{ product.cost }} Руб
+                Нет в наличии
             {% endif %}
         </p>
         <p class="product-desc">{{ product.description }}</p>

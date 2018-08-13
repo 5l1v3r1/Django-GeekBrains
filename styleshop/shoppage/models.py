@@ -9,6 +9,7 @@ class Product(models.Model):
     images = models.ImageField(upload_to='products')
     cost = models.DecimalField(max_digits=7, decimal_places=2)
     sale = models.DecimalField(max_digits=4, decimal_places=2, default='0')
+    quantity = models.PositiveSmallIntegerField()
     description = models.TextField()
 
     def __str__(self):
