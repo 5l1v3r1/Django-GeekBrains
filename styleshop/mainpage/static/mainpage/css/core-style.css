@@ -906,12 +906,12 @@ img {
   position: relative;
   z-index: 1;
   background-color: #f5f7f9;
-  padding: 100px 5%; }
+  padding: 50px 5%; }
   @media only screen and (max-width: 767px) {
     .brands-area {
       -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-      padding: 100px 5% 70px; } }
+      padding: 50px 5% 40px; } }
   @media only screen and (max-width: 767px) {
     .brands-area .single-brands-logo {
       -webkit-box-flex: 0;
@@ -920,10 +920,10 @@ img {
       width: 33.33333%;
       max-width: 33.33333%; } }
   .brands-area .single-brands-logo img {
-    max-width: 120px; }
+    max-width: 220px; }
     @media only screen and (min-width: 768px) and (max-width: 991px) {
       .brands-area .single-brands-logo img {
-        max-width: 90px; } }
+        max-width: 110px; } }
     @media only screen and (max-width: 767px) {
       .brands-area .single-brands-logo img {
         max-width: 80px;

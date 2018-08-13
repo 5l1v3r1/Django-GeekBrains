@@ -10,3 +10,5 @@ class ShopUser(AbstractUser):
         MinValueValidator(18, 'Вы слишком молоды')
     ])
     birth_date = models.DateField(verbose_name='Дата рождения')
+    signin_date = models.DateTimeField(auto_now_add=True)
+    

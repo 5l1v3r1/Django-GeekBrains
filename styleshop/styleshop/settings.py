@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'shoppage',
     'authapp',
     'adminapp',
+    'cartapp',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -116,7 +117,7 @@ AUTH_USER_MODEL = 'authapp.ShopUser'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 

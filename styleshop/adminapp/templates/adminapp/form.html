@@ -1,12 +1,12 @@
 {% extends "base_form.html" %}
 {% load static %}
 
-{% block title %}Создание{% endblock title %}
+{% block title %}{{ title }}{% endblock title %}
 
 {% block form %}
 
 <span class="contact100-form-title">
-	Создание
+	{{ title }}
 </span>
 
 {% for error in form.non_field_errors %}
@@ -18,7 +18,7 @@
 {% for field in form %}
 
 	<label for="field.name" style="color: #403866; font-size: 18px;">{{ field.label }}</label>
-	<div class="wrap-input100 validate-input" data-validate="Please enter your name">
+	<div class="wrap-input100 validate-input" style="text-align:center">
 			{{ field }}
 			{% for error in field.errors %}
 				<small style="color: red">{{ error }}</small>
@@ -27,19 +27,13 @@
 
 {% endfor %}
 
-<!-- <div class="wrap-input100 validate-input" data-validate="Please enter your name">
-	<input class="input100" type="text" name="name" placeholder="Full Name">
-	<span class="focus-input100"></span>
-</div> -->
-
 <div class="container-contact100-form-btn">
 	<button class="contact100-form-btn">
 		<span>
 			<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
-			Создать
+			{{ button_txt }}
 		</span>
 	</button>
 </div>
 
 {% endblock form %}
-		

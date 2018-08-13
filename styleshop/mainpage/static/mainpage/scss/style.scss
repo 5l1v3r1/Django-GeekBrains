@@ -1059,10 +1059,10 @@ img {
     position: relative;
     z-index: 1;
     background-color: $bg-gray;
-    padding: 100px 5%;
+    padding: 50px 5%;
     @media #{$breakpoint-xs} {
         @include flex-wrap(wrap);
-        padding: 100px 5% 70px;
+        padding: 50px 5% 40px;
     }
     .single-brands-logo {
         @media #{$breakpoint-xs} {
@@ -1071,9 +1071,9 @@ img {
             max-width: 33.33333%;
         }
         img {
-            max-width: 120px;
+            max-width: 200px;
             @media #{$breakpoint-md} {
-                max-width: 90px;
+                max-width: 110px;
             }
             @media #{$breakpoint-xs} {
                 max-width: 80px;
