@@ -45,7 +45,7 @@
     {% else %}
 
         <div id="wrapper">
-            <h1><a class="create" href="product/create">Добавить {{ new_name }}</a> {{ title }}</h1>
+            <h1>{% if new_name %}<a class="create" href="product/create">Добавить {{ new_name }}</a>{% endif %} {{ title }}</h1>
 
             <table id="keywords" cellspacing="0" cellpadding="0">
                 <thead>
@@ -56,16 +56,69 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for product in products %}
+                    {% if title == 'Товары' %}
+                        {% for product in query %}
+                            <tr>
+                                <td class="lalign"><a class="table-href" href="product/update/{{ product.id }}">{{ product.name }}</a></td>
+                                <td>{{ product.category }}</td>
+                                <td>{{ product.brand }}</td>
+                                <td>{{ product.cost }}</td>
+                                <td>{{ product.sale }}</td>
+                                <td><a class="table-href" href="product/delete/{{ product.id }}">Удалить</a></td>
+                            </tr>
+                        {% endfor %}
+
+                    {% elif title == 'Категории' %}
+                        {% for category in query %}
+                            <tr>
+                                <td class="lalign"><a class="table-href" href="category/update/{{ category.id }}">{{ category.name }}</a></td>
+                                <td>{{ category.section }}</td>
+                                <td>{{ category.sex }}</td>
+                                <td><a class="table-href" href="category/delete/{{ category.id }}">Удалить</a></td>
+                            </tr>
+                        {% endfor %}
+
+                    {% elif title == 'Пол' %}
+                        {% for sex in query %}
+                            <tr>
+                                <td class="lalign">{{ sex.name }}</td>
+                            </tr>
+                        {% endfor %}
+
+                    {% elif title == 'Секции' %}
+                        {% for section in query %}
+                            <tr>
+                                <td class="lalign"><a class="table-href" href="section/update/{{ section.id }}">{{ section.name }}</a></td>
+                                <td><img class="logo-img" src="/media/{{ section.image }}" alt=""></td>
+                                <td><a class="table-href" href="section/delete/{{ section.id }}">Удалить</a></td>
+                            </tr>
+                        {% endfor %}
+
+                    {% elif title == 'Брэнды' %}
+                        {% for brand in query %}
+                            <tr>
+                                <td class="lalign"><a class="table-href" href="brand/update/{{ brand.id }}">{{ brand.name }}</a></td>
+                                <td><img src="/media/{{ brand.image }}" alt=""></td>
+                                <td><a class="table-href" href="brand/delete/{{ brand.id }}">Удалить</a></td>
+                            </tr>
+                        {% endfor %}
+                    
+                    {% elif title == 'Пользователи' %}
+                        {% for user in query %}
+                            <tr>
+                                <td class="lalign">{{ user.username }}</td>
+                                <td>{{ user.age }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.birth_date }}</td>
+                                <td>{{ user.signin_date }}</td>
+                            </tr>
+                        {% endfor %}
+
+                    {% else %}
                         <tr>
-                            <td class="lalign"><a class="table-href" href="product/update/{{ product.id }}">{{ product.name }}</a></td>
-                            <td>{{ product.category }}</td>
-                            <td>{{ product.brand }}</td>
-                            <td>{{ product.cost }}</td>
-                            <td>{{ product.sale }}</td>
-                            <td><a class="table-href" href="product/delete/{{ product.id }}">Удалить</a></td>
+                            <td>ВНИМАНИЕ, ОШИБКА!!! ОБРАТИТЕСЬ К АДМИНИСТРАТОРУ</td>
                         </tr>
-                    {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
         </div>

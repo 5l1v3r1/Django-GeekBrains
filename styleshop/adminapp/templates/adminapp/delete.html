@@ -10,8 +10,14 @@
 </span>
 
 <div class="contact100-form-title">
-	{{ product.name }} <br>
-	<img src="/media/{{ product.images }}" style="height:200px">
+	{{ query.name }} <br>
+	{% if query.images or query.image %}
+		<img src="/media/{{ query.image }}" style="height:200px">	
+	{% endif %}
+	{% if attention %}
+		<b style="color: red">ВНИМАНИЕ</b><br>{{ attention }}
+	{% endif %}
+	
 </div>
 
 <div class="container-contact100-form-btn">
