@@ -12,9 +12,6 @@ class LoginForm(forms.Form):
 
     def find_user_in_db(self):
 
-        print('-'*100)
-        print(self)
-
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
 
