@@ -100,7 +100,12 @@
             <!-- Cart & Favourite Box -->
             <div class="cart-fav-box d-flex align-items-center">
                 <!-- Cart -->
-                <button type="submit" name="addtocart" value="5" class="btn essence-btn">В корзину</button>
+                {% if product.quantity %}
+                    <div class="add-to-cart-btn">
+                        {% csrf_token %}
+                        <a href="/cart/add/{{ product.id }}" class="btn essence-btn">В корзину</a>
+                    </div>
+                {% endif %}
                 <!-- Favourite -->
                 <div class="product-favourite ml-4">
                     <a href="#" class="favme fa fa-heart"></a>

@@ -1,12 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from django.core.exceptions import PermissionDenied
-from django.views.generic import ListView
-from . import models
+from django.views.generic import ListView, View, DeleteView
+from cartapp.models import Cart
 from mainpage.models import Section, Category, Brand
+from shoppage.models import Product
 
 class CartView(ListView):
 
-    model = models.Cart
+    model = Cart
     template_name = 'cartapp/cart.html'
     context_object_name = 'cart'
 
@@ -46,3 +47,33 @@ class CartView(ListView):
         context['brands'] = Brand.objects.all()
         
         return context
+
+class CartCreate(View):
+
+    def get(self, request, pk):
+
+        product = Product.objects.get(pk=pk)
+        old_cart_product = Cart.objects.filter(user=request.user, product=product)
+
+        if old_cart_product:
+
+            if product.quantity - old_cart_product[0].quantity != 0:
+                old_cart_product[0].quantity += 1
+                old_cart_product[0].save()
+
+            else:
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+        else:
+            new_cart_product = Cart(user=request.user, product=product, quantity=1)
+            new_cart_product.save()
+
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+class CartDelete(DeleteView):
+    
+    model = Cart
+    success_url = '/cart'
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)

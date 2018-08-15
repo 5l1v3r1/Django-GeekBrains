@@ -203,18 +203,21 @@
                                         <h6>{{ product.name }}</h6>
                                     </a>
                                     {% if product.quantity > 0 %}
+
                                         <p class="product-price">{{ product.cost }} Руб</p>
+
+                                        <!-- Наведение на контент -->
+                                        <div class="hover-content">
+                                            <!-- Добавление в корзину -->
+                                            <div class="add-to-cart-btn">
+                                                {% csrf_token %}
+                                                <a href="/cart/add/{{ product.id }}" class="btn essence-btn">В корзину</a>
+                                            </div>
+                                        </div>
+    
                                     {% else %}
                                         <p class="product-price">Нет в наличии</p>
                                     {% endif %}
-
-                                    <!-- Наведение на контент -->
-                                    <div class="hover-content">
-                                        <!-- Добавление в корзину -->
-                                        <div class="add-to-cart-btn">
-                                            <a href="/shop" class="btn essence-btn">В корзину</a>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
