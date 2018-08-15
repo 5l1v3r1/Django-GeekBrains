@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth import login, logout
 from django.views.generic import FormView
 from django.views.generic.base import TemplateView
@@ -19,7 +19,7 @@ class LoginView(mixins.AnonRequired, FormView):
             
             login(request, form.user)
 
-            return redirect(self.success_url)
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         
         return render(request, self.template_name, {'form': form})
 
