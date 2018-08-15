@@ -16,14 +16,7 @@ class ShopList(ListView):
 
         context = super().get_context_data(**kwargs)
 
-        amount = 0
-        if not self.request.user.is_anonymous:
-            cart = Cart.objects.filter(user=self.request.user)
-            if cart:
-                for obj in cart:
-                    amount += obj.quantity
-                context['amount'] = amount
-
+        context['amount'] = Cart.total_amount(self.request)
         context['sections'] = Section.objects.all()
         context['categories'] = Category.objects.all()
         context['brands'] = Brand.objects.all()
@@ -72,13 +65,6 @@ class Shop(View):
             
         all_products = paginator.get_page(page)
         
-        amount = 0
-        if not request.user.is_anonymous:
-            cart = Cart.objects.filter(user=self.request.user)
-            if cart:
-                for obj in cart:
-                    amount += obj.quantity
-
         return render(
             request, 'shoppage/shop.html', 
             {
@@ -87,7 +73,7 @@ class Shop(View):
                 'categories': categories,
                 'brands': brands,
                 'page_title': page_title,
-                'amount': amount
+                'amount': Cart.total_amount(request)
             }
         )
 
@@ -101,14 +87,7 @@ class ProductDetails(DetailView):
 
         context = super().get_context_data(**kwargs)
         
-        amount = 0
-        if not self.request.user.is_anonymous:    
-            cart = Cart.objects.filter(user=self.request.user)
-            if cart:
-                for obj in cart:
-                    amount += obj.quantity
-                context['amount'] = amount
-
+        context['amount'] = Cart.total_amount(self.request)
         context['sections'] = Section.objects.all()
         context['categories'] = Category.objects.all()
         context['brands'] = Brand.objects.all()

@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.core.exceptions import PermissionDenied
 from django.views.generic import ListView, View, DeleteView
 from cartapp.models import Cart
@@ -31,17 +31,15 @@ class CartView(ListView):
         cart = context['cart']
         subtotal_price = 0
         total_price = 0
-        amount = 0
 
         for obj in cart:
 
             subtotal_price += float(obj.product.cost) * int(obj.quantity)
             total_price += float(obj.product.cost) * (100. - float(obj.product.sale)) / 100 * int(obj.quantity)
-            amount += obj.quantity
 
         context['subtotal_price'] = subtotal_price
         context['total_price'] = total_price
-        context['amount'] = amount
+        context['amount'] = Cart.total_amount(self.request)
         context['sections'] = Section.objects.all()
         context['categories'] = Category.objects.all()
         context['brands'] = Brand.objects.all()
@@ -51,6 +49,11 @@ class CartView(ListView):
 class CartCreate(View):
 
     def get(self, request, pk):
+
+        if request.user.is_anonymous:
+            return render(request, 'cartapp/cart.html', {
+                'errors': ['Для добавления товара в корзину необходимо авторизоваться']
+            })
 
         product = Product.objects.get(pk=pk)
         old_cart_product = Cart.objects.filter(user=request.user, product=product)
