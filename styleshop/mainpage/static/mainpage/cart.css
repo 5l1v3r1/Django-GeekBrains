@@ -2,6 +2,20 @@
     overflow: hidden;
 }
 
+.error {
+    padding: 100px 0;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(122, 0, 0);
+}
+.error a {
+    font-size: inherit;
+    color: rgb(97, 94, 94);
+}
+.error a:hover {
+    color: rgb(0, 195, 255);
+}
+
 .top {
     padding-top: 20px;
     text-align: center;
@@ -28,5 +42,3 @@
 .image-cart img {
     max-height: 500px;
 }
-
-@media only screen and (max-width: )

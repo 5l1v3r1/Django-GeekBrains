@@ -51,91 +51,62 @@
 
 {% block content %}
 
-    <!-- <div class="cart-content"> -->
     <div class="content-cart">
-        <!-- Cart Summary -->
-        <div class="top">
-            <h2>Summary</h2>
-            <ul class="summary-table">
-                <li><span>subtotal:</span> <span>$274.00</span></li>
-                <li><span>delivery:</span> <span>Free</span></li>
-                <li><span>discount:</span> <span>-15%</span></li>
-                <li><span>total:</span> <span>$232.00</span></li>
-            </ul>
-            <div class="checkout-btn blue-btn">
-                <a href="checkout" class="btn essence-btn">Заказать</a>
+        {% if errors %}
+            <div class="error">
+                {% for error in errors %}
+                    {{ error }}   
+                    <br>             
+                {% endfor %}
+                <a href="/auth/login">Войти</a>
             </div>
-        </div>
-
-        <div class="cart-product-block">
-            <div class="row">
-                <div class="col-12 col-md-6 col-lg-4 product-cart">
-                    <div class="single-cart-item">
-                        <a href="#" class="image-cart">
-                            <img src="{% static 'mainpage/img/product-img/product-1.jpg' %}" class="cart-thumb" alt="">
-                            <!-- Cart Item Desc -->
-                            <div class="cart-item-desc">
-                                <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                                <span class="badge">Mango</span>
-                                <h6>Button Through Strap Mini Dress</h6>
-                                <p class="size" style="line-height: 1">Size: S</p>
-                                <p class="color" style="line-height: 1">Color: Red</p>
-                                <p class="price" style="line-height: 1">$45.00</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 product-cart">
-                    <div class="single-cart-item">
-                        <a href="#" class="image-cart">
-                            <img src="{% static 'mainpage/img/product-img/product-1.jpg' %}" class="cart-thumb" alt="">
-                            <!-- Cart Item Desc -->
-                            <div class="cart-item-desc">
-                                <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                                <span class="badge">Mango</span>
-                                <h6>Button Through Strap Mini Dress</h6>
-                                <p class="size">Size: S</p>
-                                <p class="color">Color: Red</p>
-                                <p class="price">$45.00</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 product-cart">
-                    <div class="single-cart-item">
-                        <a href="#" class="image-cart">
-                            <img src="{% static 'mainpage/img/product-img/product-1.jpg' %}" class="cart-thumb" alt="">
-                            <!-- Cart Item Desc -->
-                            <div class="cart-item-desc">
-                                <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                                <span class="badge">Mango</span>
-                                <h6>Button Through Strap Mini Dress</h6>
-                                <p class="size">Size: S</p>
-                                <p class="color">Color: Red</p>
-                                <p class="price">$45.00</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 product-cart">
-                    <div class="single-cart-item">
-                        <a href="#" class="image-cart">
-                            <img src="{% static 'mainpage/img/product-img/product-1.jpg' %}" class="cart-thumb" alt="">
-                            <!-- Cart Item Desc -->
-                            <div class="cart-item-desc">
-                                <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                                <span class="badge">Mango</span>
-                                <h6>Button Through Strap Mini Dress</h6>
-                                <p class="size">Size: S</p>
-                                <p class="color">Color: Red</p>
-                                <p class="price">$45.00</p>
-                            </div>
-                        </a>
-                    </div>
+        {% elif not cart %}
+            <div class="error">
+                    {{ user.first_name }}, Ваша корзина пуста
+                    <br>             
+                <a href="/shop">В магазин</a>
+            </div>
+        {% else %}
+            <!-- Cart Summary -->
+            <div class="top">
+                <h2>Сумма</h2>
+                <ul class="summary-table">
+                    <li><span>Товаров в корзине: {{ amount }}</span></li>
+                    <li><span>Цена без скидки:</span> <span>{{ subtotal_price }}</span></li>
+                    <li><span>Цена учитывая скидки:</span> <span>{{ total_price }}</span></li>
+                </ul>
+                <div class="checkout-btn blue-btn">
+                    <a href="checkout" class="btn essence-btn">Заказать</a>
                 </div>
             </div>
-        </div>
-    <!-- </div> -->
+    
+            <div class="cart-product-block">
+                <div class="row">
+    
+                    {% for object in cart %}
+                        <div class="col-12 col-md-6 col-lg-4 product-cart">
+                            <div class="single-cart-item">
+                                <a href="/shop/{{ object.product.id }}" class="image-cart">
+                                    <img src="/media/{{ object.product.images }}" class="cart-thumb" alt="">
+                                    <div class="cart-item-desc">
+                                        <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
+                                        <span class="badge">{{ object.product.brand }}</span>
+                                        <h6>{{ object.product.name }}</h6>
+                                        <p class="size" style="line-height: 1">Количество: {{ object.quantity }}</p>
+                                        <p class="price" style="line-height: 1">
+                                            Цена: {{ object.product.cost }} Руб
+                                            {% if object.product.sale %}
+                                                | Скидка: {{ object.product.sale }}%
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
     </div>
     
 {% endblock content %}
