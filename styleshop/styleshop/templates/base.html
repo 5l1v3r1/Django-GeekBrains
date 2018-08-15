@@ -77,7 +77,9 @@
                 </div>
                 <!-- Cart Area -->
                 <div class="cart-area">
-                    <a href="/cart" id="essenceCartBtn"><img src="{% static 'mainpage/img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+                    <a href="/cart" id="essenceCartBtn"><img src="{% static 'mainpage/img/core-img/bag.svg' %}" alt=""> <span>
+                        {% block cart_amount %}{% endblock cart_amount %}
+                    </span></a>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ from django.views.generic import View, DetailView, ListView
 from django.core.paginator import Paginator
 from . import models
 from mainpage.models import Section, Category, Brand
+from cartapp.models import Cart
 
 class ShopList(ListView):
 
@@ -14,6 +15,15 @@ class ShopList(ListView):
     def get_context_data(self, **kwargs):
 
         context = super().get_context_data(**kwargs)
+
+        amount = 0
+        if not self.request.user.is_anonymous:
+            cart = Cart.objects.filter(user=self.request.user)
+            if cart:
+                for obj in cart:
+                    amount += obj.quantity
+                context['amount'] = amount
+
         context['sections'] = Section.objects.all()
         context['categories'] = Category.objects.all()
         context['brands'] = Brand.objects.all()
@@ -61,6 +71,13 @@ class Shop(View):
             page = 1
             
         all_products = paginator.get_page(page)
+        
+        amount = 0
+        if not request.user.is_anonymous:
+            cart = Cart.objects.filter(user=self.request.user)
+            if cart:
+                for obj in cart:
+                    amount += obj.quantity
 
         return render(
             request, 'shoppage/shop.html', 
@@ -69,7 +86,8 @@ class Shop(View):
                 'sections': sections,
                 'categories': categories,
                 'brands': brands,
-                'page_title': page_title
+                'page_title': page_title,
+                'amount': amount
             }
         )
 
@@ -82,6 +100,15 @@ class ProductDetails(DetailView):
     def get_context_data(self, **kwargs):
 
         context = super().get_context_data(**kwargs)
+        
+        amount = 0
+        if not self.request.user.is_anonymous:    
+            cart = Cart.objects.filter(user=self.request.user)
+            if cart:
+                for obj in cart:
+                    amount += obj.quantity
+                context['amount'] = amount
+
         context['sections'] = Section.objects.all()
         context['categories'] = Category.objects.all()
         context['brands'] = Brand.objects.all()

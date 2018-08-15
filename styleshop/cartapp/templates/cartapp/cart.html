@@ -37,6 +37,12 @@
 
 {% endblock top_menu %}
 
+{% block cart_amount %}
+    {% if amount %}
+        {{ amount }}
+    {% endif %}
+{% endblock cart_amount %}
+
 {% block login %}
 
     {% if user.username %}

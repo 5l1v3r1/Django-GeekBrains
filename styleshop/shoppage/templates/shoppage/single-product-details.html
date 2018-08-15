@@ -45,6 +45,12 @@
 
 {% endblock login %}
 
+{% block cart_amount %}
+    {% if amount %}
+        {{ amount }}
+    {% endif %}
+{% endblock cart_amount %}
+
 {% block content %}
 
 <!-- ##### Single Product Details Area Start ##### -->
