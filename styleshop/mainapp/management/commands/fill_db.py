@@ -19,6 +19,7 @@ class Command(BaseCommand):
         Section.objects.all().delete()
         Brand.objects.all().delete()
         Sex.objects.all().delete()
+        ShopUser.objects.all().delete()
         
         sections = load_from_json('sections')
         for section in sections:
@@ -44,9 +45,15 @@ class Command(BaseCommand):
         for product in products:
             add_product = Product(**product)
             add_product.save()
+
+        ShopUser.objects.create_user(
+            username='dimas', password='dimas', age=20,
+            first_name='Дмитрий', last_name='Гончар', birth_date='1990-10-10'
+            )
         
         if input('Create superuser? (y/n)') == 'y':
             ShopUser.objects.create_superuser(
                 'admin', 'dima.gonchar.29.08.13@gmail.com', 'admin', 
+                first_name='Дмитрий', last_name='Гончар',
                 age=19, birth_date='1998-09-03'
             )

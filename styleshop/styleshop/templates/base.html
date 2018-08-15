@@ -18,12 +18,11 @@
 
     <link rel="stylesheet" href="{% static 'mainpage/style.css' %}">
     <link rel="stylesheet" href="{% static 'mainpage/css/core-style.css' %}">
-
+    {% block css %}{% endblock css %}
 </head>
 
 <body>
 
-    {% block header %}
     <header class="header_area">
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
             <!-- Class Menu -->
@@ -78,15 +77,14 @@
                 </div>
                 <!-- Cart Area -->
                 <div class="cart-area">
-                    <a href="/" id="essenceCartBtn"><img src="{% static 'mainpage/img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+                    <a href="/cart" id="essenceCartBtn"><img src="{% static 'mainpage/img/core-img/bag.svg' %}" alt=""> <span>
+                        {% block cart_amount %}{% endblock cart_amount %}
+                    </span></a>
                 </div>
             </div>
-
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
-
-    {% endblock header %}
 
     {% block content %}
 

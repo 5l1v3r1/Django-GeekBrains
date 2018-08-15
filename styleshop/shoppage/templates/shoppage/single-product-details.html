@@ -45,6 +45,12 @@
 
 {% endblock login %}
 
+{% block cart_amount %}
+    {% if amount %}
+        {{ amount }}
+    {% endif %}
+{% endblock cart_amount %}
+
 {% block content %}
 
 <!-- ##### Single Product Details Area Start ##### -->
@@ -61,11 +67,15 @@
             <h2>{{ product.name }}</h2>
         </a>
         <p class="product-price">
-            {% if product.sale > 0 %}
-            <span class="old-price">{{ product.cost }} Руб</span> 
-            -{{ product.sale }}%
+            {% if product.quantity > 0 %}
+                {% if product.sale > 0 %}
+                <span class="old-price">{{ product.cost }} Руб</span> 
+                -{{ product.sale }}%
+                {% else %}
+                {{ product.cost }} Руб
+                {% endif %}
             {% else %}
-            {{ product.cost }} Руб
+                Нет в наличии
             {% endif %}
         </p>
         <p class="product-desc">{{ product.description }}</p>
@@ -90,7 +100,12 @@
             <!-- Cart & Favourite Box -->
             <div class="cart-fav-box d-flex align-items-center">
                 <!-- Cart -->
-                <button type="submit" name="addtocart" value="5" class="btn essence-btn">В корзину</button>
+                {% if product.quantity %}
+                    <div class="add-to-cart-btn">
+                        {% csrf_token %}
+                        <a href="/cart/add/{{ product.id }}" class="btn essence-btn">В корзину</a>
+                    </div>
+                {% endif %}
                 <!-- Favourite -->
                 <div class="product-favourite ml-4">
                     <a href="#" class="favme fa fa-heart"></a>

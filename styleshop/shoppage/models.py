@@ -8,7 +8,8 @@ class Product(models.Model):
     sex = models.ForeignKey('mainpage.Sex', on_delete=models.CASCADE)
     images = models.ImageField(upload_to='products')
     cost = models.DecimalField(max_digits=7, decimal_places=2)
-    sale = models.DecimalField(max_digits=4, decimal_places=2, default='0')
+    sale = models.PositiveSmallIntegerField()
+    quantity = models.PositiveSmallIntegerField()
     description = models.TextField()
 
     def __str__(self):

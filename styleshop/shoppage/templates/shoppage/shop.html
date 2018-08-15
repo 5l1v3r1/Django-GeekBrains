@@ -43,6 +43,12 @@
 
 {% endblock login %}
 
+{% block cart_amount %}
+    {% if amount %}
+        {{ amount }}
+    {% endif %}
+{% endblock cart_amount %}
+
 {% block content %}
 
 <!-- Название товаров -->
@@ -176,10 +182,8 @@
                                     <a href="/shop/{{product.id}}">
                                         <img src="/media/{{ product.images }}" alt="">
                                     </a>
-                                    <!-- Наведение на картинку товара -->
-                                    {% comment %} <img class="hover-img" src="/static/img/product-img/product-2.jpg" alt=""> {% endcomment %}
                                     
-                                    {% if product.sale > 0 %}
+                                    {% if product.sale > 0 and product.quantity > 0 %}
                                     <!-- Скидка на товар -->
                                     <div class="product-badge offer-badge">
                                         <span>-{{ product.sale }}%</span>
@@ -198,15 +202,22 @@
                                     <a href="/shop/{{product.id}}">
                                         <h6>{{ product.name }}</h6>
                                     </a>
-                                    <p class="product-price">{{ product.cost }} Руб</p>
+                                    {% if product.quantity > 0 %}
 
-                                    <!-- Наведение на контент -->
-                                    <div class="hover-content">
-                                        <!-- Добавление в корзину -->
-                                        <div class="add-to-cart-btn">
-                                            <a href="/shop" class="btn essence-btn">В корзину</a>
+                                        <p class="product-price">{{ product.cost }} Руб</p>
+
+                                        <!-- Наведение на контент -->
+                                        <div class="hover-content">
+                                            <!-- Добавление в корзину -->
+                                            <div class="add-to-cart-btn">
+                                                {% csrf_token %}
+                                                <a href="/cart/add/{{ product.id }}" class="btn essence-btn">В корзину</a>
+                                            </div>
                                         </div>
-                                    </div>
+    
+                                    {% else %}
+                                        <p class="product-price">Нет в наличии</p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

@@ -95,7 +95,7 @@ class TableProduct(Product, Table):
 
         context['new_name'] = 'товар'
         context['title'] = 'Товары'
-        context['table_fields'] = ['Название', 'Категория', 'Брэнд', 'Цена', 'Скидка', 'Удаление']
+        context['table_fields'] = ['Название', 'Категория', 'Брэнд', 'В наличии', 'Цена', 'Скидка', 'Удаление']
 
         return context
 

@@ -1,0 +1,44 @@
+.content-cart {
+    overflow: hidden;
+}
+
+.error {
+    padding: 100px 0;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(122, 0, 0);
+}
+.error a {
+    font-size: inherit;
+    color: rgb(97, 94, 94);
+}
+.error a:hover {
+    color: rgb(0, 195, 255);
+}
+
+.top {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.blue-btn {
+    margin-top: 20px;
+}
+
+.cart-product-block {
+    width: 100%;
+    float: left;
+}
+
+.product-cart {
+    text-align: center;
+    width: 30%;
+    float: initial;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-cart img {
+    max-height: 500px;
+}

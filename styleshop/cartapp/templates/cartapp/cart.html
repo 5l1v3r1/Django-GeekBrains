@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Корзина
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'mainpage/cart.css' %}">
+{% endblock css %}
+
+{% block top_menu %}
+
+    {% for section in sections %}
+        <ul class="single-mega cn-col-4">
+
+            <li class="title">{{ section.name }}</li>
+
+            {% for category in categories %}
+
+                {% if category.section.id == section.id %}
+                    <li><a href="/shop/category/{{ category.id }}">{{ category.name }}</a></li>
+                {% endif %}
+
+            {% endfor %}
+        </ul>
+    {% endfor %}
+    
+    <ul class="single-mega cn-col-4">
+        <li class="title">Брэнды</li>
+            
+        {% for brand in brands %}
+            <li><a href="/shop/brand/{{ brand.id }}">{{ brand.name }}</a></li>
+        {% endfor %}
+
+    </ul>
+
+{% endblock top_menu %}
+
+{% block cart_amount %}
+    {% if amount %}
+        {{ amount }}
+    {% endif %}
+{% endblock cart_amount %}
+
+{% block login %}
+
+    {% if user.username %}
+        <a href="/auth/logout"><b><i>{{ user.username }}</i></b></a>
+        
+    {% else %}
+        <a href="/auth/login"><b><i>Войти</i></b></a>
+
+    {% endif %}
+
+{% endblock login %}
+
+{% block content %}
+
+    <div class="content-cart">
+        {% if errors %}
+            <div class="error">
+                {% for error in errors %}
+                    {{ error }}   
+                    <br>             
+                {% endfor %}
+                <a href="/auth/login">Войти</a>
+            </div>
+        {% elif not cart %}
+            <div class="error">
+                    {{ user.first_name }}, Ваша корзина пуста
+                    <br>             
+                <a href="/shop">В магазин</a>
+            </div>
+        {% else %}
+            <!-- Cart Summary -->
+            <div class="top">
+                <h2>Сумма</h2>
+                <ul class="summary-table">
+                    <li><span>Товаров в корзине: {{ amount }}</span></li>
+                    <li><span>Цена без скидки:</span> <span>{{ subtotal_price }}</span></li>
+                    <li><span>Цена учитывая скидки:</span> <span>{{ total_price }}</span></li>
+                </ul>
+                <div class="checkout-btn blue-btn">
+                    <a href="checkout" class="btn essence-btn">Заказать</a>
+                </div>
+            </div>
+    
+            <div class="cart-product-block">
+                <div class="row">
+    
+                    {% for object in cart %}
+                        <div class="col-12 col-md-6 col-lg-4 product-cart">
+                            <div class="single-cart-item">
+                                <a href="/shop/{{ object.product.id }}" class="image-cart">
+                                    <img src="/media/{{ object.product.images }}" class="cart-thumb" alt="">
+                                    <div class="cart-item-desc">
+                                        <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
+                                        <span class="badge">{{ object.product.brand }}</span>
+                                        <h6>{{ object.product.name }}</h6>
+                                        <p class="size" style="line-height: 1">Количество: {{ object.quantity }}</p>
+                                        <p class="price" style="line-height: 1">
+                                            Цена: {{ object.product.cost }} Руб
+                                            {% if object.product.sale %}
+                                                | Скидка: {{ object.product.sale }}%
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </a>
+                                <a href="delete/{{ object.id }}">УДАЛИТЬ</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    
+{% endblock content %}
+
+{% block js %}
+    <script src="{% static 'mainpage/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <script src="{% static 'mainpage/js/popper.min.js' %}"></script>
+    <script src="{% static 'mainpage/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'mainpage/js/plugins.js' %}"></script>
+    <script src="{% static 'mainpage/js/classy-nav.min.js' %}"></script>
+    <script src="{% static 'mainpage/js/active.js' %}"></script>
+{% endblock js %}

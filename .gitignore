@@ -4,3 +4,4 @@ styleshop/shoppage/migrations/*
 styleshop/mainpage/migrations/*
 styleshop/mainapp/migrations/*
 styleshop/authapp/migrations/*
+styleshop/cartapp/migrations/*
