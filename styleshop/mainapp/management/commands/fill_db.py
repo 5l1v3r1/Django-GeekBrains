@@ -44,6 +44,11 @@ class Command(BaseCommand):
         for product in products:
             add_product = Product(**product)
             add_product.save()
+
+        ShopUser.objects.create_user(
+            username='dimas', password='dimas', age=20,
+            birth_date='1990-10-10'
+            )
         
         if input('Create superuser? (y/n)') == 'y':
             ShopUser.objects.create_superuser(
