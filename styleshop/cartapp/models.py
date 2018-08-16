@@ -7,7 +7,6 @@ class Cart(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     products = lib.DictField()
-    # product = models.ForeignKey(Product, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
     @staticmethod
@@ -15,9 +14,8 @@ class Cart(models.Model):
         
         if not request.user.is_anonymous:
             
-            cart = Cart.objects.filter(user=request.user)
-            # amount = sum(list(map(lambda obj: obj.quantity, cart)))
-            amount = sum([obj.quantity for obj in cart])
+            cart = Cart.objects.get(user=request.user)
+            amount = sum([cart.products[obj]['quantity'] for obj in cart.products if cart.products])
             return amount
 
         return None
