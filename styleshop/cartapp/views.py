@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import ListView, View, DeleteView, FormView
-from cartapp.models import Cart
+from cartapp.models import Cart, Order
 from mainpage.models import Section, Category, Brand
 from shoppage.models import Product
 # from cartapp.forms import DeliveryForm
@@ -116,3 +116,38 @@ class CartDelete(View):
         cart.save()
 
         return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
+
+class OrderView(View):
+
+    def dispatch(self, request, *args, **kwargs):
+        
+        cart = Cart.objects.get(user=request.user)
+
+        for val in cart.products.values():
+
+            product = Product.objects.get(id=val['id'])
+            
+            if product.quantity < val['quantity']:
+                return render(request, 'cartapp/cart.html', {
+                    'error_quantity': 'Товара {} в количестве {} больше нет на складе'.format(
+                        val['name'], val['quantity'])
+                })
+
+        return super(OrderView, self).dispatch(request, *args, **kwargs)
+
+    def get(self, request):
+        
+        cart = Cart.objects.get(user=request.user)
+
+        for val in cart.products.values():
+
+            product = Product.objects.get(id=val['id'])
+            product.quantity -= val['quantity']
+            product.save()
+
+        Order(user=request.user, products=cart.products).save()
+
+        cart.products = dict()
+        cart.save()
+
+        return render(request, 'cartapp/cart.html', {'success_text': 'Благодарим за заказ'})

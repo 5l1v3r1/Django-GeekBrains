@@ -37,12 +37,6 @@
 
 {% endblock top_menu %}
 
-{% block cart_amount %}
-    {% if amount %}
-        {{ amount }}
-    {% endif %}
-{% endblock cart_amount %}
-
 {% block login %}
 
     {% if user.username %}
@@ -55,13 +49,19 @@
 
 {% endblock login %}
 
+{% block cart_amount %}
+    {% if amount %}
+        {{ amount }}
+    {% endif %}
+{% endblock cart_amount %}
+
 {% block content %}
 
     <div class="content-cart">
         {% if errors %}
             <div class="error">
                 {% for error in errors %}
-                    {{ error }}   
+                    {{ error }}
                     <br>             
                 {% endfor %}
                 <a href="/auth/login">Войти</a>
@@ -70,7 +70,7 @@
             <div class="error">
                 {% for error in errors_quantity %}
                     {{ error }}   
-                    <br>             
+                    <br>
                 {% endfor %}
                 <a href="/auth/login">В магазин</a>
             </div>
@@ -78,6 +78,12 @@
             <div class="error">
                     {{ user.first_name }}, Ваша корзина пуста
                     <br>             
+                <a href="/shop">В магазин</a>
+            </div>
+        {% elif success_text %}
+            <div class="top">
+                <h4>{{ success_text }}</h4>
+                <a href="/">На главную</a>
                 <a href="/shop">В магазин</a>
             </div>
         {% else %}
@@ -90,7 +96,7 @@
                     <li><span>Цена учитывая скидки:</span> <span>{{ total_price }}</span></li>
                 </ul>
                 <div class="checkout-btn blue-btn">
-                    <a href="checkout" class="btn essence-btn">Заказать</a>
+                    <a href="/cart/order" class="btn essence-btn">Заказать</a>
                 </div>
             </div>
     
