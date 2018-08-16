@@ -30,14 +30,16 @@ class CartView(ListView):
         context = super().get_context_data(**kwargs)
 
         cart = context['cart']
+        products = cart.products
         subtotal_price = 0
         total_price = 0
 
-        for obj in cart:
+        for val in products.values():
 
-            subtotal_price += float(obj.product.cost) * int(obj.quantity)
-            total_price += float(obj.product.cost) * (100. - float(obj.product.sale)) / 100 * int(obj.quantity)
+            subtotal_price += float(val['cost']) * int(val['quantity'])
+            total_price += float(val['cost']) * (100. - float(val['sale'])) / 100 * int(val['quantity'])
 
+        context['cart'] = products
         context['subtotal_price'] = subtotal_price
         context['total_price'] = total_price
         context['amount'] = Cart.total_amount(self.request)
@@ -69,7 +71,7 @@ class CartAdd(View):
 
         if request.user.is_anonymous:
             return render(request, 'cartapp/cart.html', {
-                'errors': ['Для добавления товара в корзину необходимо авторизоваться']
+                'errors_quantity': ['Для добавления товара в корзину необходимо авторизоваться']
             })
 
         product = Product.objects.get(pk=pk)
@@ -105,13 +107,15 @@ class CartAdd(View):
 
         return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
         
-class CartDelete(DeleteView):
-    
-    model = Cart
-    success_url = '/cart'
+class CartDelete(View):
 
-    def get(self, *args, **kwargs):
-        return self.post(*args, **kwargs)
+    def get(self, request, pk):
+
+        cart = Cart.objects.get(user=request.user)
+        del(cart.products[str(pk)])
+        cart.save()
+
+        return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
 
 # class DeliveryView(FormView):
     
