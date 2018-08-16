@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import ListView, View, DeleteView, FormView
 from cartapp.models import Cart
 from mainpage.models import Section, Category, Brand
@@ -17,7 +17,7 @@ class CartView(ListView):
         if self.request.user.is_anonymous:
             return None
 
-        return super().get_queryset().filter(user=self.request.user)
+        return super().get_queryset().get(user=self.request.user)
 
     def get_context_data(self, **kwargs):
 
@@ -47,7 +47,23 @@ class CartView(ListView):
         
         return context
 
-class CartCreate(View):
+class CartAdd(View):
+
+    def add_product(self, product, dictionary):
+
+        dictionary[product.id] = {
+            'id': product.id,
+            'name': product.name,
+            'category': product.category.name,
+            'sex': product.sex.name,
+            'brand': product.brand.name,
+            'image': product.images.name,
+            'cost': float(product.cost),
+            'sale': product.sale,
+            'quantity': 1,
+        }
+
+        return dictionary
 
     def get(self, request, pk):
 
@@ -57,23 +73,38 @@ class CartCreate(View):
             })
 
         product = Product.objects.get(pk=pk)
-        old_cart_product = Cart.objects.filter(user=request.user, product=product)
+        cart = Cart.objects.get(user=request.user)
+        
+        print('-'*200)
+        print('IN ADD_TO_CART')
+        print(cart.products)
 
-        if old_cart_product:
+        if str(product.id) in cart.products:
+            
+            if product.quantity - cart.products[str(product.id)]['quantity'] != 0:
+                cart.products[str(product.id)]['quantity'] += 1
+                print('-'*200)
+                print('AFTER CHANGING QUANTITY')
+                print(cart.products)
+                print('-'*200)
+                cart.save()
+                return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
 
-            if product.quantity - old_cart_product[0].quantity != 0:
-                old_cart_product[0].quantity += 1
-                old_cart_product[0].save()
+            return render(self.request, 'cartapp/cart.html', {
+                'errors': ['На складе больше нет товара {}'.format(product.name)]
+            })
 
-            else:
-                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        self.add_product(product, cart.products)
+        
+        print('-'*200)
+        print('AFTER ADDING')
+        print(cart.products)
+        print('-'*200)
 
-        else:
-            new_cart_product = Cart(user=request.user, product=product, quantity=1)
-            new_cart_product.save()
+        cart.save()
 
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
+        return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
+        
 class CartDelete(DeleteView):
     
     model = Cart
