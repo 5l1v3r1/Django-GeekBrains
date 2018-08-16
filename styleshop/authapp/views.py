@@ -31,10 +31,6 @@ class LogoutView(LoginRequiredMixin, TemplateView):
 
     def post(self, request):
 
-        print(dir(request.POST))
-        print('-'*100)
-        print(request.POST.values)
-
         logout(request)
 
         return redirect(self.success_url)
