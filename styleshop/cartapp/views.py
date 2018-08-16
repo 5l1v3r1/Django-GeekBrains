@@ -1,9 +1,10 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.core.exceptions import PermissionDenied
-from django.views.generic import ListView, View, DeleteView
+from django.views.generic import ListView, View, DeleteView, FormView
 from cartapp.models import Cart
 from mainpage.models import Section, Category, Brand
 from shoppage.models import Product
+# from cartapp.forms import DeliveryForm
 
 class CartView(ListView):
 
@@ -80,3 +81,9 @@ class CartDelete(DeleteView):
 
     def get(self, *args, **kwargs):
         return self.post(*args, **kwargs)
+
+# class DeliveryView(FormView):
+    
+#     form_class = DeliveryForm
+#     template_name = 'cartapp/checkout.html'
+#     success_url = '/'
