@@ -6,7 +6,7 @@ from styleshop import lib
 class Cart(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    products = lib.ListField()
+    products = lib.DictField()
     # product = models.ForeignKey(Product, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 

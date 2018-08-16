@@ -1,20 +1,19 @@
 from django.db import models
 import json
 
-class ListField(models.TextField):
+class DictField(models.TextField):
 
     description = 'Класс, хранящий в себе одну и более записей объекта в виде списка'
 
     def __init__(self, *args, **kwargs):
-        super(ListField, self).__init__(*args, **kwargs)
-        # self.list = list()
+        super(DictField, self).__init__(*args, **kwargs)
 
     def to_python(self, value):
 
         if not value:
-            return list()
+            return dict()
         
-        if isinstance(value, list):
+        if isinstance(value, dict):
             return value
 
         return json.loads(value)
