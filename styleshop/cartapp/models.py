@@ -40,3 +40,9 @@ cart = {
             return amount
 
         return None
+
+    class Order(models.Model):
+
+        user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
+        products = models.ForeignKey(Cart, on_delete=models.DO_NOTHING)
+        created = models.DateTimeField(auto_now_add=True)
