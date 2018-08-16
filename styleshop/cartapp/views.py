@@ -93,7 +93,7 @@ class CartAdd(View):
                 return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
 
             return render(self.request, 'cartapp/cart.html', {
-                'errors': ['На складе больше нет товара {}'.format(product.name)]
+                'errors_quantity': ['На складе больше нет товара {}'.format(product.name)]
             })
 
         self.add_product(product, cart.products)
@@ -116,9 +116,3 @@ class CartDelete(View):
         cart.save()
 
         return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
-
-# class DeliveryView(FormView):
-    
-#     form_class = DeliveryForm
-#     template_name = 'cartapp/checkout.html'
-#     success_url = '/'
