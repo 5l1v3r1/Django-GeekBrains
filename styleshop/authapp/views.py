@@ -4,6 +4,7 @@ from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from . import forms, mixins
+from cartapp.models import Cart
 
 class LoginView(mixins.AnonRequired, FormView):
 
@@ -31,10 +32,6 @@ class LogoutView(LoginRequiredMixin, TemplateView):
 
     def post(self, request):
 
-        print(dir(request.POST))
-        print('-'*100)
-        print(request.POST.values)
-
         logout(request)
 
         return redirect(self.success_url)
@@ -54,6 +51,9 @@ class SignInView(mixins.AnonRequired, FormView):
             user = form.save()
             login(request, user)
 
+            cart = Cart(user=user, products=dict())
+            cart.save()
+            
             return redirect(self.success_url)
 
         return render(request, self.template_name, {'form': form})

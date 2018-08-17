@@ -115,6 +115,17 @@
                             </tr>
                         {% endfor %}
 
+                    {% elif title == 'Заказы' %}
+                        {% for object in query %}
+                            <tr>
+                                <td class="lalign">{{ object.user.username }}</td>
+                                <td>{% for product in object.products.values %}
+                                    Товар {{ product.name }} в количестве {{ product.quantity }}; 
+                                {% endfor %}</td>
+                                <td>{{ object.created }}</td>
+                            </tr>
+                        {% endfor %}
+
                     {% else %}
                         <tr>
                             <td>ВНИМАНИЕ, ОШИБКА!!! ОБРАТИТЕСЬ К АДМИНИСТРАТОРУ</td>

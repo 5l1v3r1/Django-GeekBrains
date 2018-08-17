@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 from authapp.models import ShopUser
 from mainpage.models import Section, Category, Sex, Brand
 from shoppage.models import Product
+from cartapp.models import Cart
 import json, os
 
 JSON_PATH = 'mainapp/management/json_files/'
@@ -20,6 +21,7 @@ class Command(BaseCommand):
         Brand.objects.all().delete()
         Sex.objects.all().delete()
         ShopUser.objects.all().delete()
+        Cart.objects.all().delete()
         
         sections = load_from_json('sections')
         for section in sections:
@@ -46,14 +48,18 @@ class Command(BaseCommand):
             add_product = Product(**product)
             add_product.save()
 
-        ShopUser.objects.create_user(
+        user = ShopUser.objects.create_user(
             username='dimas', password='dimas', age=20,
             first_name='Дмитрий', last_name='Гончар', birth_date='1990-10-10'
             )
+        cart = Cart(user=user, products=dict())
+        cart.save()
         
         if input('Create superuser? (y/n)') == 'y':
-            ShopUser.objects.create_superuser(
+            user = ShopUser.objects.create_superuser(
                 'admin', 'dima.gonchar.29.08.13@gmail.com', 'admin', 
                 first_name='Дмитрий', last_name='Гончар',
                 age=19, birth_date='1998-09-03'
             )
+            cart = Cart(user=user, products=dict())
+            cart.save()

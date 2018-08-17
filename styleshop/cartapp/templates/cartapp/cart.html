@@ -37,12 +37,6 @@
 
 {% endblock top_menu %}
 
-{% block cart_amount %}
-    {% if amount %}
-        {{ amount }}
-    {% endif %}
-{% endblock cart_amount %}
-
 {% block login %}
 
     {% if user.username %}
@@ -55,16 +49,36 @@
 
 {% endblock login %}
 
+{% block cart_amount %}
+    {% if amount %}
+        {{ amount }}
+    {% endif %}
+{% endblock cart_amount %}
+
 {% block content %}
 
     <div class="content-cart">
         {% if errors %}
             <div class="error">
                 {% for error in errors %}
-                    {{ error }}   
+                    {{ error }}
                     <br>             
                 {% endfor %}
                 <a href="/auth/login">Войти</a>
+            </div>
+        {% elif errors_quantity %}
+            <div class="error">
+                {% for error in errors_quantity %}
+                    {{ error }}   
+                    <br>
+                {% endfor %}
+                <a href="/shop">В магазин</a>
+            </div>
+        {% elif success_text %}
+            <div class="success-cart">
+                {{ success_text }} <hr>
+                <a href="/">На главную</a> <br>
+                <a href="/shop">В магазин</a>
             </div>
         {% elif not cart %}
             <div class="error">
@@ -82,27 +96,27 @@
                     <li><span>Цена учитывая скидки:</span> <span>{{ total_price }}</span></li>
                 </ul>
                 <div class="checkout-btn blue-btn">
-                    <a href="checkout" class="btn essence-btn">Заказать</a>
+                    <a href="/cart/order" class="btn essence-btn">Заказать</a>
                 </div>
             </div>
     
             <div class="cart-product-block">
                 <div class="row">
     
-                    {% for object in cart %}
+                    {% for _, object in cart.items %}
                         <div class="col-12 col-md-6 col-lg-4 product-cart">
                             <div class="single-cart-item">
-                                <a href="/shop/{{ object.product.id }}" class="image-cart">
-                                    <img src="/media/{{ object.product.images }}" class="cart-thumb" alt="">
+                                <a href="/shop/{{ object.id }}" class="image-cart">
+                                    <img src="/media/{{ object.image }}" class="cart-thumb" alt="">
                                     <div class="cart-item-desc">
                                         <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-                                        <span class="badge">{{ object.product.brand }}</span>
-                                        <h6>{{ object.product.name }}</h6>
+                                        <span class="badge">{{ object.brand }}</span>
+                                        <h6>{{ object.name }}</h6>
                                         <p class="size" style="line-height: 1">Количество: {{ object.quantity }}</p>
                                         <p class="price" style="line-height: 1">
-                                            Цена: {{ object.product.cost }} Руб
-                                            {% if object.product.sale %}
-                                                | Скидка: {{ object.product.sale }}%
+                                            Цена: {{ object.cost }} Руб
+                                            {% if object.sale %}
+                                                | Скидка: {{ object.sale }}%
                                             {% endif %}
                                         </p>
                                     </div>
