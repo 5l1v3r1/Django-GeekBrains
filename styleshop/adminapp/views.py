@@ -4,6 +4,7 @@ from . import forms
 from shoppage import models as sp
 from mainpage import models as mp
 from authapp import models as aa
+from cartapp import models as ca
 from authapp.mixins import StaffRequired
 
 class Table(StaffRequired, ListView):
@@ -21,6 +22,7 @@ class Table(StaffRequired, ListView):
             {'name': 'Секции', 'link': 'section'},
             {'name': 'Категории', 'link': 'category'},
             {'name': 'Пользователи', 'link': 'user'},
+            {'name': 'Заказы', 'link': 'order'},
         ]
 
         return context
@@ -78,6 +80,7 @@ class MainView(StaffRequired, View):
                 {'name': 'Секции', 'link': 'section'},
                 {'name': 'Категории', 'link': 'category'},
                 {'name': 'Пользователи', 'link': 'user'},
+                {'name': 'Заказы', 'link': 'order'},
             ],
             'title': 'Главная',
             'page_text': 'Добро пожаловать в админ-панель магазина StyleShop. Для просмотра/добавления/редактирования/удаления объектов перейдите на их страницу по ссылке в меню или ниже.'
@@ -230,5 +233,20 @@ class TableUser(User, Table):
 
         context['title'] = 'Пользователи'
         context['table_fields'] = ['Имя', 'Возраст', 'Почта', 'День рождения', 'Время регистрации']
+
+        return context
+
+#------------ Контроллеры заказов ------------#
+class Order:
+    model = ca.Order
+
+class TableOrder(Order, Table):
+    
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+
+        context['title'] = 'Заказы'
+        context['table_fields'] = ['Имя', 'Товары', 'Дата создания']
 
         return context

@@ -20,5 +20,6 @@ urlpatterns = [
     path('section/delete/<int:pk>', views.DeleteSection.as_view()),
     path('sex', views.TableSex.as_view()),
     path('user', views.TableUser.as_view()),
+    path('order', views.TableOrder.as_view()),
     path('', views.MainView.as_view())
 ]
