@@ -16,6 +16,20 @@
     color: rgb(0, 195, 255);
 }
 
+.success-cart {
+    padding: 100px 0;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(22, 21, 21);
+}
+.success-cart a {
+    font-size: inherit;
+    color: rgb(80, 77, 77);
+}
+.success-cart a:hover {
+    color: rgb(0, 195, 255);
+}
+
 .top {
     padding-top: 20px;
     text-align: center;

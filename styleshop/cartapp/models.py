@@ -41,8 +41,8 @@ cart = {
 
         return None
 
-    class Order(models.Model):
+class Order(models.Model):
 
-        user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
-        products = models.TextField()
-        created = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
+    products = lib.DictField()
+    created = models.DateTimeField(auto_now_add=True)

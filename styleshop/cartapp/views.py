@@ -4,6 +4,7 @@ from django.views.generic import ListView, View, DeleteView, FormView
 from cartapp.models import Cart, Order
 from mainpage.models import Section, Category, Brand
 from shoppage.models import Product
+import json
 # from cartapp.forms import DeliveryForm
 
 class CartView(ListView):
@@ -77,18 +78,10 @@ class CartAdd(View):
         product = Product.objects.get(pk=pk)
         cart = Cart.objects.get(user=request.user)
         
-        print('-'*200)
-        print('IN ADD_TO_CART')
-        print(cart.products)
-
         if str(product.id) in cart.products:
             
             if product.quantity - cart.products[str(product.id)]['quantity'] != 0:
                 cart.products[str(product.id)]['quantity'] += 1
-                print('-'*200)
-                print('AFTER CHANGING QUANTITY')
-                print(cart.products)
-                print('-'*200)
                 cart.save()
                 return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
 
@@ -97,11 +90,6 @@ class CartAdd(View):
             })
 
         self.add_product(product, cart.products)
-        
-        print('-'*200)
-        print('AFTER ADDING')
-        print(cart.products)
-        print('-'*200)
 
         cart.save()
 
@@ -129,8 +117,8 @@ class OrderView(View):
             
             if product.quantity < val['quantity']:
                 return render(request, 'cartapp/cart.html', {
-                    'error_quantity': 'Товара {} в количестве {} больше нет на складе'.format(
-                        val['name'], val['quantity'])
+                    'errors_quantity': ['Товара {} в количестве {} больше нет на складе'.format(
+                        val['name'], val['quantity'])]
                 })
 
         return super(OrderView, self).dispatch(request, *args, **kwargs)
@@ -145,7 +133,8 @@ class OrderView(View):
             product.quantity -= val['quantity']
             product.save()
 
-        Order(user=request.user, products=cart.products).save()
+        order = Order(user=request.user, products=cart.products)
+        order.save()
 
         cart.products = dict()
         cart.save()

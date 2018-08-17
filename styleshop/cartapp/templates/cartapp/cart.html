@@ -72,18 +72,18 @@
                     {{ error }}   
                     <br>
                 {% endfor %}
-                <a href="/auth/login">В магазин</a>
+                <a href="/shop">В магазин</a>
+            </div>
+        {% elif success_text %}
+            <div class="success-cart">
+                {{ success_text }} <hr>
+                <a href="/">На главную</a> <br>
+                <a href="/shop">В магазин</a>
             </div>
         {% elif not cart %}
             <div class="error">
                     {{ user.first_name }}, Ваша корзина пуста
                     <br>             
-                <a href="/shop">В магазин</a>
-            </div>
-        {% elif success_text %}
-            <div class="top">
-                <h4>{{ success_text }}</h4>
-                <a href="/">На главную</a>
                 <a href="/shop">В магазин</a>
             </div>
         {% else %}
