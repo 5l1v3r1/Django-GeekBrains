@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View
+from django.contrib.auth.mixins import LoginRequiredMixin
 from . import forms
 from shoppage import models as sp
 from mainpage import models as mp
@@ -7,10 +8,11 @@ from authapp import models as aa
 from cartapp import models as ca
 from authapp.mixins import StaffRequired
 
-class Table(StaffRequired, ListView):
+class Table(LoginRequiredMixin, ListView):
 
     template_name = 'adminapp/admin.html'
     context_object_name = 'query'
+    login_url = '/auth/login'
 
     def get_context_data(self, **kwargs):
 
@@ -27,9 +29,10 @@ class Table(StaffRequired, ListView):
 
         return context
 
-class Create(StaffRequired, CreateView):
+class Create(LoginRequiredMixin, CreateView):
     
     template_name = 'adminapp/form.html'
+    login_url = '/auth/login'
 
     def get_context_data(self, **kwargs):
         
@@ -39,9 +42,10 @@ class Create(StaffRequired, CreateView):
 
         return context
 
-class Update(StaffRequired, UpdateView):
+class Update(LoginRequiredMixin, UpdateView):
     
     template_name = 'adminapp/form.html'
+    login_url = '/auth/login'
 
     def get_context_data(self, **kwargs):
         
@@ -51,11 +55,12 @@ class Update(StaffRequired, UpdateView):
 
         return context
 
-class Delete(StaffRequired, DeleteView):
+class Delete(LoginRequiredMixin, DeleteView):
     
     template_name = 'adminapp/delete.html'
     context_object_name = 'query'
     del_word = None
+    login_url = '/auth/login'
     
     def get_context_data(self, **kwargs):
         
@@ -68,7 +73,9 @@ class Delete(StaffRequired, DeleteView):
 
         return context
 
-class MainView(StaffRequired, View):
+class MainView(LoginRequiredMixin, View):
+
+    login_url = '/auth/login'
 
     def get(self, request):
 
